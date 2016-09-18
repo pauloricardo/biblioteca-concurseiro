@@ -1,0 +1,84 @@
+{
+  "questoes": [
+    {
+      "id": 1,
+      "texto": "Questão 1",
+      "orgao": {
+        "id": 1,
+        "nome": "TRE"
+      },
+      "banca": {
+        "id": 1,
+        "nome": "CESPE/UNB"
+      },
+      "disciplina": {
+        "id": 1,
+        "nome": "Disciplina Teste"
+      },
+      "cargo": {
+        "id": 1,
+        "nome": "Analista de sistemas"
+      }
+    },
+    {
+      "id": 2,
+      "texto": "Questão 2",
+      "orgao": {
+        "id": 1,
+        "nome": "TRE"
+      },
+      "banca": {
+        "id": 1,
+        "nome": "CESPE/UNB"
+      },
+      "disciplina": {
+        "id": 1,
+        "nome": "Disciplina Teste"
+      },
+      "cargo": {
+        "id": 1,
+        "nome": "Analista de sistemas"
+      }
+    },
+    {
+      "id": 3,
+      "texto": "Questão 3",
+      "orgao": {
+        "id": 1,
+        "nome": "TRE"
+      },
+      "banca": {
+        "id": 1,
+        "nome": "CESPE/UNB"
+      },
+      "disciplina": {
+        "id": 1,
+        "nome": "Disciplina Teste"
+      },
+      "cargo": {
+        "id": 1,
+        "nome": "Analista de sistemas"
+      }
+    },
+    {
+      "id": 4,
+      "texto": "Questão 4",
+      "orgao": {
+        "id": 1,
+        "nome": "TRE"
+      },
+      "banca": {
+        "id": 1,
+        "nome": "CESPE/UNB"
+      },
+      "disciplina": {
+        "id": 1,
+        "nome": "Disciplina Teste"
+      },
+      "cargo": {
+        "id": 1,
+        "nome": "Analista de sistemas"
+      }
+    }
+  ]
+}

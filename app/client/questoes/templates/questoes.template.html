@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="panel" style="padding:20px;">
+        <div class="panel-heading">
+            <form action="">
+                <h3 class="page-header">Questões Cadastradas</h3>
+                <div class="form-group">
+                    <select ng-model="bancas" class="form-control" style="width:200px; float:left; margin-right:5px;"
+                            ng-options="item.id as item.nome for item in questoesCtrl.bancas track by item.id">
+                        <option value="">Selecione uma banca..</option>
+                    </select>
+                    <select ng-model="orgaos" class="form-control" style="width:200px; float:left; margin-right:5px;"
+                            ng-options="item.id as item.nome for item in questoesCtrl.orgaos track by item.id">
+                        <option value="">Selecione uma orgão..</option>
+                    </select>
+                    <select ng-model="disciplinas" class="form-control" style="width:200px;"
+                            ng-options="item.id as item.nome for item in questoesCtrl.disciplinas track by item.id">
+
+                    <option value="">Selecione uma disciplina..</option>
+                    </select>
+                    <div class="clearfix"></div>
+                    <br>
+                    <button class="btn btn-default">Buscar</button>
+                    <a class="btn btn-primary" href="#/questoes/adicionar">Nova</a>
+                    <hr>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Orgão</th>
+                    <th>Banca</th>
+                    <th>Cargo</th>
+                    <th>Disciplina</th>
+                    <th>Enunciado</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div >
+                    <tr ng-repeat="questao in questoesCtrl.questoes.questoes track by questao.id">
+                        <td>{{questao.id}}</td>
+                        <td>{{questao.orgao.nome}}</td>
+                        <td>{{questao.banca.nome}}</td>
+                        <td>{{questao.cargo.nome}}</td>
+                        <td>{{questao.disciplina.nome}}</td>
+                        <td>{{questao.texto}}</td>
+                        <td>
+                            <a href="#/questoes/editar/{{questao.id}}">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

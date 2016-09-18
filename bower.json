@@ -1,0 +1,24 @@
+{
+  "name": "biblioteca-concurseiro-front",
+  "description": "Front-end do sistema de cadastro de questoes do biblioteca do concurseiro",
+  "main": "index.js",
+  "authors": [
+    "paulorangel16@outlook.com"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.8",
+    "angular-route": "^1.5.8",
+    "oclazyload": "^1.0.9",
+    "bootstrap": "^3.3.7",
+    "angular-ui-tinymce": "^0.0.17"
+  }
+}

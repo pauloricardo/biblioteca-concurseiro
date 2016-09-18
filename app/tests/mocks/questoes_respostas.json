@@ -1,0 +1,41 @@
+{
+  "questoes":
+    {
+      "id": 1,
+      "texto": "Questão 1",
+      "orgao": {
+        "id": 1,
+        "nome": "TRE"
+      },
+      "banca": {
+        "id": 1,
+        "nome": "CESPE/UNB"
+      },
+      "disciplina": {
+        "id": 1,
+        "nome": "Disciplina Teste"
+      },
+      "cargo": {
+        "id": 1,
+        "nome": "Analista de sistemas"
+      },
+      "respostas" : [
+        {
+          "id" : 1,
+          "enunciado" : "Primeiro enunciado",
+          "correta" : true
+        },
+        {
+          "id" : 2,
+          "enunciado" : "Segundo enunciado",
+          "correta" : true
+        },
+        {
+          "id" : 3,
+          "enunciado" : "Terceiro enunciado",
+          "correta" : false
+        }
+      ]
+    }
+
+}
