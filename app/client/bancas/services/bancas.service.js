@@ -15,7 +15,7 @@ function BancasDataService($http, $q) {
     return exports;
 
     function getBancas() {
-        return $http.get('app/tests/mocks/bancas.json');
+        return $http.get('/tests/mocks/bancas.json');
     }
 }
 

@@ -15,7 +15,7 @@ function DisciplinasDataService($http, $q) {
     return exports;
 
     function getDisciplinas() {
-        return $http.get('app/tests/mocks/disciplinas.json');
+        return $http.get('/tests/mocks/disciplinas.json');
     }
 }
 

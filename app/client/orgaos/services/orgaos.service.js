@@ -15,7 +15,7 @@ function OrgaosDataService($http, $q) {
     return exports;
 
     function getOrgaos() {
-        return $http.get('app/tests/mocks/orgaos.json');
+        return $http.get('/tests/mocks/orgaos.json');
     }
 }
 
