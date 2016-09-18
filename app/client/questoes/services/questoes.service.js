@@ -16,11 +16,11 @@ function QuestoesDataService($http, $q) {
     return exports;
 
     function buscaQuestoesCadastradas() {
-        return $http.get('public/tests/mocks/questoes.json');
+        return $http.get('tests/mocks/questoes.json');
     }
 
     function buscaQuestaoPorID(id){
-        return $http.get('public/tests/mocks/questoes_respostas.json');
+        return $http.get('tests/mocks/questoes_respostas.json');
     }
 }
 
