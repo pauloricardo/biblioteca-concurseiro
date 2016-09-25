@@ -1,41 +1,43 @@
 {
-  "questoes":
-    {
+  "questoes": {
+    "id": 1,
+    "texto": "Questão 1",
+    "concursos": {
       "id": 1,
-      "texto": "Questão 1",
-      "orgao": {
+      "orgaos": {
         "id": 1,
-        "nome": "TRE"
+        "nome": "UFPE"
       },
-      "banca": {
+      "bancas": {
         "id": 1,
-        "nome": "CESPE/UNB"
+        "nome": "Cesgranrio"
       },
-      "disciplina": {
+      "ano": 2008
+    },
+    "disciplina": {
+      "id": 1,
+      "nome": "Disciplina Teste"
+    },
+    "cargo": {
+      "id": 1,
+      "nome": "Analista de sistemas"
+    },
+    "respostas": [
+      {
         "id": 1,
-        "nome": "Disciplina Teste"
+        "enunciado": "Primeiro enunciado",
+        "correta": true
       },
-      "cargo": {
-        "id": 1,
-        "nome": "Analista de sistemas"
+      {
+        "id": 2,
+        "enunciado": "Segundo enunciado",
+        "correta": true
       },
-      "respostas" : [
-        {
-          "id" : 1,
-          "enunciado" : "Primeiro enunciado",
-          "correta" : true
-        },
-        {
-          "id" : 2,
-          "enunciado" : "Segundo enunciado",
-          "correta" : true
-        },
-        {
-          "id" : 3,
-          "enunciado" : "Terceiro enunciado",
-          "correta" : false
-        }
-      ]
-    }
-
+      {
+        "id": 3,
+        "enunciado": "Terceiro enunciado",
+        "correta": false
+      }
+    ]
+  }
 }

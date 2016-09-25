@@ -20,7 +20,7 @@ function QuestoesDataService($http, $q) {
     }
 
     function buscaQuestaoPorID(id){
-        return $http.get('/tests/mocks/questoes_respostas.json');
+        return $http.get('tests/mocks/questoes_respostas.json');
     }
 }
 

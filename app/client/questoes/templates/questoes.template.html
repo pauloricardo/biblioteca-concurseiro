@@ -4,18 +4,17 @@
             <form action="">
                 <h3 class="page-header">Questões Cadastradas</h3>
                 <div class="form-group">
+                    <select name=""
+                            id="concurso"
+                            ng-model="questoesCtrl.questao.concursos"
+                            class="form-control"
+                            style="width:200px; float:left; margin-right:5px;"
+                            ng-options="item.id as (item.orgaos.nome + ' / ' + item.ano) for item in questoesCtrl.concursos track by item.id">
+                        <option value="">Selecione um concurso..</option>
+                    </select>
                     <select ng-model="bancas" class="form-control" style="width:200px; float:left; margin-right:5px;"
-                            ng-options="item.id as item.nome for item in questoesCtrl.bancas track by item.id">
-                        <option value="">Selecione uma banca..</option>
-                    </select>
-                    <select ng-model="orgaos" class="form-control" style="width:200px; float:left; margin-right:5px;"
-                            ng-options="item.id as item.nome for item in questoesCtrl.orgaos track by item.id">
-                        <option value="">Selecione uma orgão..</option>
-                    </select>
-                    <select ng-model="disciplinas" class="form-control" style="width:200px;"
                             ng-options="item.id as item.nome for item in questoesCtrl.disciplinas track by item.id">
-
-                    <option value="">Selecione uma disciplina..</option>
+                        <option value="">Selecione uma disciplina..</option>
                     </select>
                     <div class="clearfix"></div>
                     <br>
@@ -30,8 +29,7 @@
                 <thead>
                 <tr>
                     <th>#ID</th>
-                    <th>Orgão</th>
-                    <th>Banca</th>
+                    <th>Concurso</th>
                     <th>Cargo</th>
                     <th>Disciplina</th>
                     <th>Enunciado</th>
@@ -42,8 +40,7 @@
                 <div >
                     <tr ng-repeat="questao in questoesCtrl.questoes.questoes track by questao.id">
                         <td>{{questao.id}}</td>
-                        <td>{{questao.orgao.nome}}</td>
-                        <td>{{questao.banca.nome}}</td>
+                        <td>{{questao.concursos.orgaos.nome + ' / ' + questao.concursos.ano}}</td>
                         <td>{{questao.cargo.nome}}</td>
                         <td>{{questao.disciplina.nome}}</td>
                         <td>{{questao.texto}}</td>

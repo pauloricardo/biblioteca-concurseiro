@@ -1,5 +1,6 @@
 <div class="row" ng-init="questoesCtrl.getQuestao()">
     <div class="col-md-12">
+        <h3 class="page-header">Cadastrar questão</h3>
         <form class="form" role="form">
             <div class="form-group">
                 <label for="descricao">Descrição</label>
@@ -19,27 +20,15 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="orgao">
-                        Orgao
+                    <label for="concurso">
+                        Concurso
                     </label>
                     <select name=""
-                            id="orgao"
-                            ng-model="questoesCtrl.questao.orgao"
+                            id="concurso"
+                            ng-model="questoesCtrl.questao.concursos"
                             class="form-control"
-                            ng-options="item.id as item.nome for item in questoesCtrl.orgaos track by item.id">
-                        <option value="">Selecione uma orgao..</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="banca">
-                        Banca
-                    </label>
-                    <select name="" id="banca"
-                            ng-model="questoesCtrl.questao.banca"
-                            class="form-control"
-                            ng-options="item.id as item.nome for item in questoesCtrl.bancas track by item.id"
-                    ng-selected="item.id == 0">
-                    <option value="">Selecione uma banca..</option>
+                            ng-options="item.id as (item.orgaos.nome + ' / ' + item.ano) for item in questoesCtrl.concursos track by item.id">
+                        <option value="">Selecione um concurso..</option>
                     </select>
                 </div>
             </div>

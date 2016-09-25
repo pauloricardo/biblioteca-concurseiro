@@ -13,10 +13,10 @@
         .controller('QuestoesController', QuestoesController);
 
     QuestoesController.$inject = ['$route', '$routeParams', '$window', '$q', '$scope', '$http', 'QuestoesDataService', 'DisciplinasDataService',
-        'BancasDataService', 'OrgaosDataService'];
+        'ConcursosDataService'];
 
     function QuestoesController($route, $routeParams, $window, $q, $scope, $http, QuestoesDataService,
-                                DisciplinasDataService, BancasDataService, OrgaosDataService) {
+                                DisciplinasDataService, ConcursosDataService) {
         var vm = this;
 
         vm.questoes = [];
@@ -47,7 +47,6 @@
         function activate() {
             loadQuestoes();
             loadCombos();
-
         }
 
         function loadCombos() {
@@ -55,10 +54,7 @@
                 DisciplinasDataService.getDisciplinas().success(function (data) {
                     return angular.copy(data);
                 }),
-                OrgaosDataService.getOrgaos().success(function (data) {
-                    return angular.copy(data);
-                }),
-                BancasDataService.getBancas().success(function (data) {
+                ConcursosDataService.getConcursos().success(function(data){
                     return angular.copy(data);
                 })
             ]).then(function (values) {
@@ -66,10 +62,7 @@
                     vm.disciplinas = values[0].data.disciplinas;
                 }
                 if(values[1] !== undefined){
-                    vm.orgaos = values[1].data.orgaos;
-                }
-                if(values[2] !== undefined){
-                    vm.bancas = values[2].data.bancas;
+                    vm.concursos = values[1].data.concursos;
                 }
             });
         }
@@ -88,7 +81,9 @@
                     })
                 ]).then(function (values) {
                     vm.questao = angular.copy(values[0].data.questoes);
+                    console.log(values[0].data.questoes);
                     vm.respostas = angular.copy(values[0].data.questoes.respostas);
+
                 });
             }
         }

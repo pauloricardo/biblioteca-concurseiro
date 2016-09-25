@@ -3,13 +3,17 @@
     {
       "id": 1,
       "texto": "Questão 1",
-      "orgao": {
+      "concursos": {
         "id": 1,
-        "nome": "TRE"
-      },
-      "banca": {
-        "id": 1,
-        "nome": "CESPE/UNB"
+        "orgaos": {
+          "id": 1,
+          "nome": "UFPE"
+        },
+        "bancas": {
+          "id": 1,
+          "nome": "Cesgranrio"
+        },
+        "ano": 2008
       },
       "disciplina": {
         "id": 1,
@@ -23,13 +27,17 @@
     {
       "id": 2,
       "texto": "Questão 2",
-      "orgao": {
+      "concursos": {
         "id": 1,
-        "nome": "TRE"
-      },
-      "banca": {
-        "id": 1,
-        "nome": "CESPE/UNB"
+        "orgaos": {
+          "id": 1,
+          "nome": "UFPE"
+        },
+        "bancas": {
+          "id": 1,
+          "nome": "Cesgranrio"
+        },
+        "ano": 2008
       },
       "disciplina": {
         "id": 1,
@@ -43,13 +51,17 @@
     {
       "id": 3,
       "texto": "Questão 3",
-      "orgao": {
+      "concursos": {
         "id": 1,
-        "nome": "TRE"
-      },
-      "banca": {
-        "id": 1,
-        "nome": "CESPE/UNB"
+        "orgaos": {
+          "id": 1,
+          "nome": "UFPE"
+        },
+        "bancas": {
+          "id": 1,
+          "nome": "Cesgranrio"
+        },
+        "ano": 2008
       },
       "disciplina": {
         "id": 1,
@@ -63,13 +75,17 @@
     {
       "id": 4,
       "texto": "Questão 4",
-      "orgao": {
+      "concursos": {
         "id": 1,
-        "nome": "TRE"
-      },
-      "banca": {
-        "id": 1,
-        "nome": "CESPE/UNB"
+        "orgaos": {
+          "id": 1,
+          "nome": "UFPE"
+        },
+        "bancas": {
+          "id": 1,
+          "nome": "Cesgranrio"
+        },
+        "ano": 2008
       },
       "disciplina": {
         "id": 1,
