@@ -10,12 +10,19 @@ function BancasDataService($http, $q) {
     var vm = this;
 
     var exports = {
-        'getBancas': getBancas
+        'getBancas': getBancas,
+        'buscaBancaPorID' : buscaBancaPorID
     };
     return exports;
 
     function getBancas() {
-        return $http.get('/tests/mocks/bancas.json');
+        return $http.get('tests/mocks/bancas.json');
+    }
+
+
+    function buscaBancaPorID(id){
+        return $http.get('tests/mocks/bancas.json');
+
     }
 }
 

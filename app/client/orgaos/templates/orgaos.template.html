@@ -1,1 +1,29 @@
-teste orgaos
+<div class="row">
+    <div class="panel" style="padding:5px;">
+        <div class="panel-heading">
+                <h3 class="page-header">Orgãos Cadastrados</h3>
+            <a class="btn btn-primary" href="#/orgaos/adicionar">Novo</a>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Nome</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="orgao in orgaosCtrl.orgaos.orgaos track by orgao.id">
+                        <td>{{orgao.id}}</td>
+                        <td>{{orgao.nome}}</td>
+                        <td>
+                            <a href="#/orgaos/editar/{{orgao.id}}">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

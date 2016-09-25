@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="panel" style="padding:5px;">
+        <div class="panel-heading">
+            <h3 class="page-header">Concursos Cadastrados</h3>
+            <a class="btn btn-primary" href="#/concursos/adicionar">Novo</a>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Orgão</th>
+                    <th>Banca</th>
+                    <th>Ano</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="concurso in concursosCtrl.concursos.concursos track by concurso.id">
+                    <td>{{concurso.id}}</td>
+                    <td>{{concurso.orgaos.nome}}</td>
+                    <td>{{concurso.bancas.nome}}</td>
+                    <td>{{concurso.ano}}</td>
+                    <td>
+                        <a href="#/concursos/editar/{{concurso.id}}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

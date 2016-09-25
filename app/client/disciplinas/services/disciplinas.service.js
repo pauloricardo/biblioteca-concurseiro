@@ -7,15 +7,20 @@ angular
 
 DisciplinasDataService.$inject = ['$http', '$q'];
 function DisciplinasDataService($http, $q) {
-    var vm = this;
 
     var exports = {
-        'getDisciplinas': getDisciplinas
+        'getDisciplinas': getDisciplinas,
+        'buscaDisciplinaPorID' : buscaDisciplinaPorID
     };
     return exports;
 
     function getDisciplinas() {
-        return $http.get('/tests/mocks/disciplinas.json');
+        return $http.get('tests/mocks/disciplinas.json');
+    }
+
+    function buscaDisciplinaPorID(id){
+        return $http.get('tests/mocks/disciplinas.json');
+
     }
 }
 

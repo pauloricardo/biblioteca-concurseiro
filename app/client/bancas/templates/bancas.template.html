@@ -1,1 +1,29 @@
-teste bancas
+<div class="row">
+    <div class="panel" style="padding:5px;">
+        <div class="panel-heading">
+            <h3 class="page-header">Bancas Cadastradas</h3>
+            <a class="btn btn-primary" href="#/bancas/adicionar">Nova</a>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Nome</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="banca in bancasCtrl.bancas.bancas track by banca.id">
+                    <td>{{banca.id}}</td>
+                    <td>{{banca.nome}}</td>
+                    <td>
+                        <a href="#/bancas/editar/{{banca.id}}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

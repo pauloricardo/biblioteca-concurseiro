@@ -1,0 +1,21 @@
+<div class="row" ng-init="bancasCtrl.getBanca()">
+    <div class="col-md-12">
+        <h4 class="page-header">Cadastrar Banca</h4>
+        <form class="form" role="form">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text"
+                        name="nome"
+                          id="nome"
+                          ng-model="bancasCtrl.banca.nome"
+                        class="form-control">
+                </div>
+            <br>
+            <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+                <hr>
+                <a href="#/bancas" class="btn btn-default">Voltar</a>
+                <button class="btn btn-primary" ng-click="bancasCtrl.salvarBanca()">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

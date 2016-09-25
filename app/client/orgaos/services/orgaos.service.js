@@ -10,16 +10,18 @@ function OrgaosDataService($http, $q) {
     var vm = this;
 
     var exports = {
-        'getOrgaos': getOrgaos
+        'getOrgaos': getOrgaos,
+        'buscaOrgaoPorID' : buscaOrgaoPorID
     };
+
     return exports;
 
     function getOrgaos() {
-        return $http.get('/tests/mocks/orgaos.json');
+        return $http.get('tests/mocks/orgaos.json');
+    }
+
+    function buscaOrgaoPorID(id){
+        return $http.get('tests/mocks/orgaos.json');
+
     }
 }
-
-
-/**
- * Created by paulo on 18/09/2016.
- */

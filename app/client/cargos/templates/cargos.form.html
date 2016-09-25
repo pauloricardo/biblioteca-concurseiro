@@ -1,0 +1,21 @@
+<div class="row" ng-init="cargosCtrl.getCargo()">
+    <div class="col-md-12">
+        <h4 class="page-header">Cadastrar Cargo</h4>
+        <form class="form" role="form">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text"
+                        name="nome"
+                          id="nome"
+                          ng-model="cargosCtrl.cargo.nome"
+                        class="form-control">
+                </div>
+            <br>
+            <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+                <hr>
+                <a href="#/cargos" class="btn btn-default">Voltar</a>
+                <button class="btn btn-primary" ng-click="cargosCtrl.salvarCargo()">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

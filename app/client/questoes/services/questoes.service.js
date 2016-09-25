@@ -16,7 +16,7 @@ function QuestoesDataService($http, $q) {
     return exports;
 
     function buscaQuestoesCadastradas() {
-        return $http.get('/tests/mocks/questoes.json');
+        return $http.get('tests/mocks/questoes.json');
     }
 
     function buscaQuestaoPorID(id){

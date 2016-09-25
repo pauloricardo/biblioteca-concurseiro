@@ -1,8 +1,8 @@
 <div class="row">
     <div class="panel" style="padding:5px;">
         <div class="panel-heading">
-            <h3 class="page-header">Disciplinas Cadastradas</h3>
-            <a class="btn btn-primary" href="#/disciplinas/adicionar">Novo</a>
+            <h3 class="page-header">Cargos Cadastrados</h3>
+            <a class="btn btn-primary" href="#/cargos/adicionar">Novo</a>
         </div>
         <div class="panel-body">
             <table class="table table-responsive table-striped">
@@ -13,11 +13,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="disciplina in disciplinasCtrl.disciplinas.disciplinas track by disciplina.id">
-                    <td>{{disciplina.id}}</td>
-                    <td>{{disciplina.nome}}</td>
+                <tr ng-repeat="cargo in cargosCtrl.cargos.cargos track by cargo.id">
+                    <td>{{cargo.id}}</td>
+                    <td>{{cargo.nome}}</td>
                     <td>
-                        <a href="#/disciplinas/editar/{{disciplina.id}}">
+                        <a href="#/cargos/editar/{{cargo.id}}">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>

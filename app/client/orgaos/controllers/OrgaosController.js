@@ -13,9 +13,26 @@
     angular.module('biblioteca-concurseiro')
         .controller('OrgaosController', OrgaosController);
 
-    OrgaosController.$inject = ['$scope'];
+    OrgaosController.$inject = ['OrgaosDataService', '$route', '$routeParams'];
 
-    function OrgaosController($scope){
+    function OrgaosController(OrgaosDataService, $route, $routeParams){
         var vm = this;
+
+        vm.getOrgao = getOrgao;
+
+        function getOrgao(){
+            if ($routeParams.id !== undefined) {
+                OrgaosDataService.buscaOrgaoPorID({id: $routeParams.id}).success(function(result){
+                    vm.orgao = angular.copy(result.orgaos[0]);
+                });
+            }
+        }
+
+        function activate(){
+            OrgaosDataService.getOrgaos().then(function(result){
+                vm.orgaos = result.data;
+            });
+        }
+        activate();
     }
-});
+})();

@@ -62,9 +62,15 @@
                     return angular.copy(data);
                 })
             ]).then(function (values) {
-                vm.disciplinas = values[0].data.disciplinas;
-                vm.orgaos = values[1].data.orgaos;
-                vm.bancas = values[2].data.bancas;
+                if(values[0] !== undefined){
+                    vm.disciplinas = values[0].data.disciplinas;
+                }
+                if(values[1] !== undefined){
+                    vm.orgaos = values[1].data.orgaos;
+                }
+                if(values[2] !== undefined){
+                    vm.bancas = values[2].data.bancas;
+                }
             });
         }
 

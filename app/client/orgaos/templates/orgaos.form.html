@@ -1,0 +1,20 @@
+<div class="row" ng-init="orgaosCtrl.getOrgao()">
+    <div class="col-md-12">
+        <h4 class="page-header">Cadastrar Orgão</h4>
+        <form class="form" role="form">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text"
+                        name="nome"
+                          id="nome"
+                          ng-model="orgaosCtrl.orgao.nome"
+                        class="form-control">
+            <br>
+            <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+                <hr>
+                <a href="#/orgaos" class="btn btn-default">Voltar</a>
+                <button class="btn btn-primary" ng-click="orgaosCtrl.salvarOrgao()">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

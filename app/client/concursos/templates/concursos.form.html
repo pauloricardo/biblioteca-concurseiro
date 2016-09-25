@@ -1,0 +1,31 @@
+<div class="row" ng-init="concursosCtrl.getConcurso()">
+    <div class="col-md-12">
+        <h4 class="page-header">Cadastrar Concurso</h4>
+        <form class="form" role="form">
+            <div class="form-group">
+                <label for="orgao">Orgão</label>
+                <select name="orgao"
+                        id="orgao"
+                        ng-model="concursosCtrl.concurso.orgaos"
+                        ng-options="item.id as item.nome for item in concursosCtrl.orgaos.orgaos track by item.id"
+                        class="form-control">
+                    <option value="">Selecione uma opção...</option>
+                </select>
+                <label for="orgao">Banca</label>
+                <select name="orgao"
+                        id="orgao"
+                        ng-model="concursosCtrl.concurso.bancas"
+                        ng-options="item.id as item.nome for item in concursosCtrl.bancas.bancas track by item.id"
+                        class="form-control">
+                    <option value="">Selecione uma opção...</option>
+                </select>
+                </div>
+            <br>
+            <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+                <hr>
+                <a href="#/concursos" class="btn btn-default">Voltar</a>
+                <button class="btn btn-primary" ng-click="concursosCtrl.salvarConcurso()">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

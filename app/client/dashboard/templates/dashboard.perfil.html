@@ -1,0 +1,27 @@
+<div class="row" ng-init="dashboardCtrl.getUsuario()">
+    <div class="col-md-12">
+        <h4 class="page-header">Perfil de usuário</h4>
+        <form class="form" role="form">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text"
+                       name="nome"
+                       id="nome"
+                       ng-model="dashboardCtrl.usuario.nome"
+                       class="form-control">
+                <label for="nome">Nome</label>
+                <input type="text"
+                       name="nome"
+                       id="nome"
+                       ng-model="dashboardCtrl.usuario.nome"
+                       class="form-control">
+            </div>
+            <br>
+            <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
+                <hr>
+                <a href="#/dashboard" class="btn btn-default">Voltar</a>
+                <button class="btn btn-primary" ng-click="dashboardCtrl.atualizarUsuario()">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
