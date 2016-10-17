@@ -1,8 +1,25 @@
 <div class="row">
+    <div class="alerts">
+        <div ng-if="orgaosCtrl.alerts.type == 'ERROR'">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{orgaosCtrl.alerts.message}}
+            </div>
+        </div>
+
+        <div ng-if="orgaosCtrl.alerts.type == 'SUCCESS'">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{orgaosCtrl.alerts.message}}
+            </div>
+        </div>
+    </div>
     <div class="panel" style="padding:5px;">
         <div class="panel-heading">
-                <h3 class="page-header">Orgãos Cadastrados</h3>
-            <a class="btn btn-primary" href="#/orgaos/adicionar">Novo</a>
+            <h3 class="page-header">Orgãos Cadastrados</h3>
+            <a class="btn btn-primary" href="#/orgaos/adicionar">Nova</a>
         </div>
         <div class="panel-body">
             <table class="table table-responsive table-striped">
@@ -13,17 +30,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="orgao in orgaosCtrl.orgaos.orgaos track by orgao.id">
-                        <td>{{orgao.id}}</td>
-                        <td>{{orgao.nome}}</td>
-                        <td>
-                            <a href="#/orgaos/editar/{{orgao.id}}">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
+                <tr ng-repeat="orgao in orgaosCtrl.orgaos track by orgao.id">
+                    <td>{{orgao.id}}</td>
+                    <td>{{orgao.nome}}</td>
+                    <td>
+                        <a href="#/orgaos/editar/{{orgao.id}}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="javascript:;" ng-click="orgaosCtrl.trash(orgao.id)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="panel-footer">
+            <ul uib-pagination
+                ng-model="orgaosCtrl.currentPage"
+                total-items="orgaosCtrl.totalRows"
+                max-size="orgaosCtrl.maxSize"
+                boundary-links="true"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                ng-change="orgaosCtrl.pageChanged()">
+            </ul>
+
         </div>
     </div>
 </div>

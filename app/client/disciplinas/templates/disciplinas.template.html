@@ -1,29 +1,63 @@
 <div class="row">
+    <div class="alerts" ng-if="disciplinasCtrl.alerts !== undefined">
+        <div ng-if="disciplinasCtrl.alerts.type == 'ERROR'">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{disciplinasCtrl.alerts.message}}
+            </div>
+        </div>
+        <div ng-if="disciplinasCtrl.alerts.type == 'SUCCESS'">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                {{disciplinasCtrl.alerts.message}}
+            </div>
+        </div>
+    </div>
     <div class="panel" style="padding:5px;">
         <div class="panel-heading">
             <h3 class="page-header">Disciplinas Cadastradas</h3>
             <a class="btn btn-primary" href="#/disciplinas/adicionar">Novo</a>
         </div>
+
         <div class="panel-body">
             <table class="table table-responsive table-striped">
                 <thead>
                 <tr>
                     <th>#ID</th>
                     <th>Nome</th>
+                    <th>&nbsp;</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="disciplina in disciplinasCtrl.disciplinas.disciplinas track by disciplina.id">
+                <tr ng-repeat="disciplina in disciplinasCtrl.disciplinas track by disciplina.id">
                     <td>{{disciplina.id}}</td>
                     <td>{{disciplina.nome}}</td>
                     <td>
                         <a href="#/disciplinas/editar/{{disciplina.id}}">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
+                        <a href="javascript:;" ng-click="disciplinasCtrl.trash(disciplina.id)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="panel-footer">
+            <ul uib-pagination
+                    ng-model="disciplinasCtrl.currentPage"
+                    total-items="disciplinasCtrl.totalRows"
+                    max-size="disciplinasCtrl.maxSize"
+                    boundary-links="true"
+                    previous-text="&lsaquo;"
+                    next-text="&rsaquo;"
+                    first-text="&laquo;"
+                    last-text="&raquo;"
+                    ng-change="disciplinasCtrl.pageChanged()">
+            </ul>
+
         </div>
     </div>
 </div>

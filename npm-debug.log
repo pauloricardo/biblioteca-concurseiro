@@ -1,0 +1,99 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'angular-ui-pagination',
+1 verbose cli   '--save' ]
+2 info using npm@2.15.5
+3 info using node@v4.4.6
+4 verbose install initial load of C:\xampp\htdocs\biblioteca-concurseiro-front\package.json
+5 warn package.json biblioteca-concurseiro-front@1.0.0 No repository field.
+6 warn package.json biblioteca-concurseiro-front@1.0.0 No README data
+7 verbose installManyTop reading scoped package data from C:\xampp\htdocs\biblioteca-concurseiro-front\node_modules\angular-ui-bootstrap\package.json
+8 verbose installManyTop reading scoped package data from C:\xampp\htdocs\biblioteca-concurseiro-front\node_modules\bower\package.json
+9 verbose readDependencies loading dependencies from C:\xampp\htdocs\biblioteca-concurseiro-front\package.json
+10 silly cache add args [ 'angular-ui-pagination', null ]
+11 verbose cache add spec angular-ui-pagination
+12 silly cache add parsed spec Result {
+12 silly cache add   raw: 'angular-ui-pagination',
+12 silly cache add   scope: null,
+12 silly cache add   name: 'angular-ui-pagination',
+12 silly cache add   rawSpec: '',
+12 silly cache add   spec: 'latest',
+12 silly cache add   type: 'tag' }
+13 silly addNamed angular-ui-pagination@latest
+14 verbose addNamed "latest" is being treated as a dist-tag for angular-ui-pagination
+15 info addNameTag [ 'angular-ui-pagination', 'latest' ]
+16 silly mapToRegistry name angular-ui-pagination
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry data Result {
+19 silly mapToRegistry   raw: 'angular-ui-pagination',
+19 silly mapToRegistry   scope: null,
+19 silly mapToRegistry   name: 'angular-ui-pagination',
+19 silly mapToRegistry   rawSpec: '',
+19 silly mapToRegistry   spec: 'latest',
+19 silly mapToRegistry   type: 'tag' }
+20 silly mapToRegistry uri https://registry.npmjs.org/angular-ui-pagination
+21 verbose addNameTag registry:https://registry.npmjs.org/angular-ui-pagination not in flight; fetching
+22 verbose request uri https://registry.npmjs.org/angular-ui-pagination
+23 verbose request no auth needed
+24 info attempt registry request try #1 at 15:08:12
+25 verbose request id 477e9c0a6cff5523
+26 http request GET https://registry.npmjs.org/angular-ui-pagination
+27 http 404 https://registry.npmjs.org/angular-ui-pagination
+28 verbose headers { 'content-type': 'application/json',
+28 verbose headers   'cache-control': 'max-age=0',
+28 verbose headers   'content-length': '2',
+28 verbose headers   'accept-ranges': 'bytes',
+28 verbose headers   date: 'Sun, 09 Oct 2016 18:08:17 GMT',
+28 verbose headers   via: '1.1 varnish',
+28 verbose headers   age: '0',
+28 verbose headers   connection: 'keep-alive',
+28 verbose headers   'x-served-by': 'cache-iad2141-IAD',
+28 verbose headers   'x-cache': 'MISS',
+28 verbose headers   'x-cache-hits': '0',
+28 verbose headers   'x-timer': 'S1476036497.121408,VS0,VE43',
+28 verbose headers   vary: 'Accept-Encoding' }
+29 silly get cb [ 404,
+29 silly get   { 'content-type': 'application/json',
+29 silly get     'cache-control': 'max-age=0',
+29 silly get     'content-length': '2',
+29 silly get     'accept-ranges': 'bytes',
+29 silly get     date: 'Sun, 09 Oct 2016 18:08:17 GMT',
+29 silly get     via: '1.1 varnish',
+29 silly get     age: '0',
+29 silly get     connection: 'keep-alive',
+29 silly get     'x-served-by': 'cache-iad2141-IAD',
+29 silly get     'x-cache': 'MISS',
+29 silly get     'x-cache-hits': '0',
+29 silly get     'x-timer': 'S1476036497.121408,VS0,VE43',
+29 silly get     vary: 'Accept-Encoding' } ]
+30 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/angular-ui-pagination
+30 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+30 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:242:14)
+30 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+30 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:200:22)
+30 verbose stack     at emitTwo (events.js:87:13)
+30 verbose stack     at Request.emit (events.js:172:7)
+30 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1067:10)
+30 verbose stack     at emitOne (events.js:82:20)
+30 verbose stack     at Request.emit (events.js:169:7)
+30 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:988:12)
+31 verbose statusCode 404
+32 verbose pkgid angular-ui-pagination
+33 verbose cwd C:\xampp\htdocs\biblioteca-concurseiro-front
+34 error Windows_NT 10.0.10586
+35 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "angular-ui-pagination" "--save"
+36 error node v4.4.6
+37 error npm  v2.15.5
+38 error code E404
+39 error 404 Registry returned 404 for GET on https://registry.npmjs.org/angular-ui-pagination
+39 error 404
+39 error 404 'angular-ui-pagination' is not in the npm registry.
+39 error 404 You should bug the author to publish it (or use the name yourself!)
+39 error 404 It was specified as a dependency of 'biblioteca-concurseiro-front'
+39 error 404
+39 error 404 Note that you can also install from a
+39 error 404 tarball, folder, http url, or git url.
+40 verbose exit [ 1, true ]

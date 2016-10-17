@@ -7,102 +7,121 @@
  *
  * @requires $scope
  * */
-(function () {
+(function(){
+    'use strict';
 
     angular.module('biblioteca-concurseiro')
         .controller('QuestoesController', QuestoesController);
 
-    QuestoesController.$inject = ['$route', '$routeParams', '$window', '$q', '$scope', '$http', 'QuestoesDataService', 'DisciplinasDataService',
-        'ConcursosDataService'];
+    QuestoesController.$inject = ['$route', '$routeParams', 'QuestoesDataService', 'ConcursosDataService', 'DisciplinasDataService', 'CargosDataService'];
 
-    function QuestoesController($route, $routeParams, $window, $q, $scope, $http, QuestoesDataService,
-                                DisciplinasDataService, ConcursosDataService) {
+    function QuestoesController($route,$routeParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService){
         var vm = this;
+        vm.alerts = [];
+        vm.currentPage = 1;
+        vm.maxSize = 10;
+        vm.totalRows = 0;
 
-        vm.questoes = [];
 
-        vm.disciplinas = [];
-        vm.orgaos = [];
-        vm.bancas = [];
-
-        vm.respostas = [
-            {
-                "enunciado": null,
-                "correta": false
-            }
-        ];
-        vm.questao = {};
-        vm.tinymceOptions = {
-            plugins: 'link image code',
-            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
-        };
+        vm.getQuestao = getQuestao;
+        vm.create = create;
+        vm.trash = trash;
         vm.adicionarResposta = adicionarResposta;
         vm.removerResposta = removerResposta;
-        vm.getQuestao = getQuestao;
 
-        var questaoSelected = {};
-        var respostaSelected = {};
-        activate();
+        vm.pageChanged = pageChanged;
 
-        function activate() {
-            loadQuestoes();
-            loadCombos();
-        }
 
-        function loadCombos() {
-            $q.all([
-                DisciplinasDataService.getDisciplinas().success(function (data) {
-                    return angular.copy(data);
-                }),
-                ConcursosDataService.getConcursos().success(function(data){
-                    return angular.copy(data);
-                })
-            ]).then(function (values) {
-                if(values[0] !== undefined){
-                    vm.disciplinas = values[0].data.disciplinas;
-                }
-                if(values[1] !== undefined){
-                    vm.concursos = values[1].data.concursos;
-                }
+        function pageChanged(){
+            var inicio = (vm.currentPage * 10) - 10;
+            var params = {
+                'skip' : inicio,
+                'top' : 10
+            };
+
+            QuestoesDataService.getQuestoes(params).then(function(result){
+                vm.questoes = angular.copy(result.data.questoes);
             });
         }
-
-        function loadQuestoes() {
-            QuestoesDataService.buscaQuestoesCadastradas().success(function (data) {
-                vm.questoes = data;
-            });
-        }
-
-        function getQuestao() {
+        function getQuestao(){
             if ($routeParams.id !== undefined) {
-                $q.all([
-                    QuestoesDataService.buscaQuestaoPorID({id: $routeParams.id}).success(function (data) {
-                        return angular.copy(data);
-                    })
-                ]).then(function (values) {
-                    vm.questao = angular.copy(values[0].data.questoes);
-                    console.log(values[0].data.questoes);
-                    vm.respostas = angular.copy(values[0].data.questoes.respostas);
-
+                QuestoesDataService.buscaQuestaoPorID($routeParams.id).success(function(result){
+                    vm.questao = angular.copy(result);
                 });
             }
+        }   
+
+        function adicionarResposta(){
+            vm.questao.respostas.push([]);
         }
 
-        function adicionarResposta() {
-            var resposta = {
-                "enunciado": null,
-                "correta": false
+        function removerResposta(index){
+            vm.questao.respostas.splice(index, 1);
+        }
+
+        function create(){
+
+            angular.forEach(vm.questao.respostas, function(value, key){
+                vm.questao.respostas[key] = JSON.parse(JSON.stringify(value));
+            });
+
+            var params = {
+                texto : vm.questao.texto,
+                disciplina_id : vm.questao.disciplina_id,
+                concurso_id : vm.questao.concurso_id,
+                cargo_id : vm.questao.cargo_id,
+                questaoresposta : vm.questao.respostas
             };
-            vm.respostas.push(resposta);
-        }
-
-        function removerResposta(index) {
-            if (vm.respostas.length > 1) {
-                vm.respostas.splice(index, 1);
-            } else {
-                return false;
+            if($routeParams.id == undefined){
+                QuestoesDataService.create(params).then(function(result){
+                    vm.alerts = {
+                        'type' : 'SUCCESS',
+                        'message' : 'Questão Cadastrada com sucesso!'
+                    };
+                })
+            }else{
+                QuestoesDataService.update(params).then(function(result){
+                    vm.alerts = {
+                        'type' : 'SUCCESS',
+                        'message' : 'Questão Cadastrada com sucesso!'
+                    };
+                })
             }
         }
-    }
 
+        function trash(id){
+            QuestoesDataService.trash(id)
+                .then(function(result){
+                    vm.alerts = {
+                        'type' : 'SUCCESS',
+                        'message' : 'Questão deletada com sucesso!'
+                    };
+                    activate();
+                })
+        }
+
+
+        function activate(){
+            ConcursosDataService.getConcursos().then(function(result){
+                vm.concursos = angular.copy(result.data.concursos);
+            });
+
+
+            DisciplinasDataService.getDisciplinas().then(function(result){
+                vm.disciplinas = angular.copy(result.data.disciplinas);
+            });
+
+            CargosDataService.getCargos().then(function(result){
+                vm.cargos = angular.copy(result.data.cargos);
+            });
+
+            QuestoesDataService.getQuestoes({'skip':0,'top':10}).then(function(result){
+                vm.questoes = angular.copy(result.data.questoes);
+                vm.totalRows = angular.copy(result.data['X-Total-Rows']);
+            });
+
+        }
+        activate();
+
+    }
 })();

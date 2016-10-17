@@ -18,7 +18,8 @@
         }
         function activate(){
             $q.all([
-                QuestoesDataService.buscaQuestoesCadastradas().then(function(result){
+                QuestoesDataService.getQuestoes().then(function(result){
+                    console.log(result.data);
                     return result.data.questoes.length;
                 }),
                 ConcursosDataService.getConcursos().then(function(result){

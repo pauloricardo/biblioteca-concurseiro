@@ -1,30 +1,54 @@
 <div class="row" ng-init="concursosCtrl.getConcurso()">
     <div class="col-md-12">
+        <div class="alerts">
+            <div ng-if="concursosCtrl.alerts.type == 'ERROR'">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{concursosCtrl.alerts.message}}
+                </div>
+            </div>
+            <div ng-if="concursosCtrl.alerts.type == 'SUCCESS'">
+                <div class="alert alert-success" role="alert">
+                    {{concursosCtrl.alerts.message}}
+                </div>
+            </div>
+        </div>
         <h4 class="page-header">Cadastrar Concurso</h4>
         <form class="form" role="form">
             <div class="form-group">
-                <label for="orgao">Orgão</label>
-                <select name="orgao"
-                        id="orgao"
-                        ng-model="concursosCtrl.concurso.orgaos"
-                        ng-options="item.id as item.nome for item in concursosCtrl.orgaos.orgaos track by item.id"
-                        class="form-control">
-                    <option value="">Selecione uma opção...</option>
-                </select>
-                <label for="orgao">Banca</label>
-                <select name="orgao"
-                        id="orgao"
-                        ng-model="concursosCtrl.concurso.bancas"
-                        ng-options="item.id as item.nome for item in concursosCtrl.bancas.bancas track by item.id"
-                        class="form-control">
-                    <option value="">Selecione uma opção...</option>
-                </select>
+                <div class="col-md-4">
+                    <label for="ano">Ano</label>
+                    <input name="ano"
+                            id="ano"
+                            ng-model="concursosCtrl.concurso.ano"
+                            class="form-control"/>
                 </div>
+                <div class="col-md-4">
+                    <label for="orgao">Orgão</label>
+                    <select name="orgao"
+                            id="orgao"
+                            ng-model="concursosCtrl.concurso.orgao_id"
+                            ng-options="item.id as item.nome for item in concursosCtrl.orgaos"
+                            class="form-control">
+                        <option value="">Selecione uma opção...</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="orgao">Banca</label>
+                    <select name="orgao"
+                            id="orgao"
+                            ng-model="concursosCtrl.concurso.banca_id"
+                            ng-options="item.id as item.nome for item in concursosCtrl.bancas"
+                            class="form-control">
+                        <option value="">Selecione uma opção...</option>
+                    </select>
+                </div>
+            </div>
             <br>
             <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
                 <hr>
                 <a href="#/concursos" class="btn btn-default">Voltar</a>
-                <button class="btn btn-primary" ng-click="concursosCtrl.salvarConcurso()">Salvar</button>
+                <button class="btn btn-primary" ng-click="concursosCtrl.create()">Salvar</button>
             </div>
         </form>
     </div>

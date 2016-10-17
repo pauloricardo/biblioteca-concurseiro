@@ -6,14 +6,14 @@
                 <div class="form-group">
                     <select name=""
                             id="concurso"
-                            ng-model="questoesCtrl.questao.concursos"
+                            ng-model="questoesCtrl.questao.concurso_id"
                             class="form-control"
                             style="width:200px; float:left; margin-right:5px;"
-                            ng-options="item.id as (item.orgaos.nome + ' / ' + item.ano) for item in questoesCtrl.concursos track by item.id">
+                            ng-options="item.id as (item.orgao.nome + ' / ' + item.ano) for item in questoesCtrl.concursos track by item.id">
                         <option value="">Selecione um concurso..</option>
                     </select>
-                    <select ng-model="bancas" class="form-control" style="width:200px; float:left; margin-right:5px;"
-                            ng-options="item.id as item.nome for item in questoesCtrl.disciplinas track by item.id">
+                    <select ng-model="questoesCtrl.questao.disciplina_id" class="form-control" style="width:200px; float:left; margin-right:5px;"
+                            ng-options="item.id as item.nome for item in questoesCtrl.disciplinas">
                         <option value="">Selecione uma disciplina..</option>
                     </select>
                     <div class="clearfix"></div>
@@ -37,10 +37,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div >
-                    <tr ng-repeat="questao in questoesCtrl.questoes.questoes track by questao.id">
+                    <tr ng-repeat="questao in questoesCtrl.questoes">
                         <td>{{questao.id}}</td>
-                        <td>{{questao.concursos.orgaos.nome + ' / ' + questao.concursos.ano}}</td>
+                        <td>{{questao.concurso.orgao.nome + ' / ' + questao.concurso.ano}}</td>
                         <td>{{questao.cargo.nome}}</td>
                         <td>{{questao.disciplina.nome}}</td>
                         <td>{{questao.texto}}</td>
@@ -48,11 +47,29 @@
                             <a href="#/questoes/editar/{{questao.id}}">
                                 <i class="glyphicon glyphicon-edit"></i>
                             </a>
+
+                            <a href="javascript:;" ng-click="questoesCtrl.trash(disciplina.id)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
                         </td>
                     </tr>
-                </div>
                 </tbody>
             </table>
+        </div>
+
+        <div class="panel-footer">
+            <ul uib-pagination
+                ng-model="questoesCtrl.currentPage"
+                total-items="questoesCtrl.totalRows"
+                max-size="questoesCtrl.maxSize"
+                boundary-links="true"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                ng-change="questoesCtrl.pageChanged()">
+            </ul>
+
         </div>
     </div>
 </div>

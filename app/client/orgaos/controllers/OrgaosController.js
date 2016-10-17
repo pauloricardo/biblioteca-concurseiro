@@ -19,18 +19,75 @@
         var vm = this;
 
         vm.getOrgao = getOrgao;
+        vm.create = create;
+        vm.trash = trash;
 
+        vm.orgaos =[];
+        vm.alerts = [];
+        vm.currentPage = 1;
+        vm.maxSize = 10;
+        vm.totalRows = 0;
+        vm.pageChanged = pageChanged;
+
+        function pageChanged(){
+            var inicio = (vm.currentPage * 10) - 10;
+            var params = {
+                'skip' : inicio,
+                'top' : 10
+            };
+
+            OrgaosDataService.getOrgaos(params).then(function(result){
+                vm.orgaos = angular.copy(result.data.orgaos);
+            });
+        }
         function getOrgao(){
             if ($routeParams.id !== undefined) {
-                OrgaosDataService.buscaOrgaoPorID({id: $routeParams.id}).success(function(result){
-                    vm.orgao = angular.copy(result.orgaos[0]);
+                OrgaosDataService.buscaOrgaoPorID($routeParams.id).success(function(result){
+                    vm.orgao = angular.copy(result);
                 });
             }
         }
+        function create(){
+            if($routeParams.id == undefined){
+                OrgaosDataService.create({
+                    nome : vm.orgao.nome
+                }).then(function(result){
+                    vm.alerts = {
+                        'type' : 'SUCCESS',
+                        'message' : 'Orgão Cadastrado com sucesso!'
+                    };
+                })
+            }else{
+                OrgaosDataService.update({
+                    id : $routeParams.id,
+                    nome : vm.orgao.nome
+                }).then(function(result){
+                    vm.alerts = {
+                        'type' : 'SUCCESS',
+                        'message' : 'Orgão Editado com sucesso!'
+                    };
+                })
+            }
+        }
 
+        function trash(id){
+            OrgaosDataService.trash(id)
+                .then(function(result){
+                    vm.alerts = {
+                        'type' : 'SUCCESS',
+                        'message' : 'Orgão Deletado com sucesso!'
+                    };
+                    activate();
+                })
+        }
         function activate(){
-            OrgaosDataService.getOrgaos().then(function(result){
-                vm.orgaos = result.data;
+            var params = {
+                'skip' : 0,
+                'top' : 10
+            };
+            OrgaosDataService.getOrgaos(params).then(function(result){
+                vm.orgaos = angular.copy(result.data.orgaos);
+                vm.totalRows = angular.copy(result.data['X-Total-Rows']);
             });
         }
         activate();

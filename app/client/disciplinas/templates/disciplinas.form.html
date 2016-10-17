@@ -1,7 +1,20 @@
 <div class="row" ng-init="disciplinasCtrl.getDisciplina()">
     <div class="col-md-12">
+        <div class="alerts">
+            <div ng-if="disciplinasCtrl.alerts.type == 'ERROR'">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{disciplinasCtrl.alerts.message}}
+                </div>
+            </div>
+            <div ng-if="disciplinasCtrl.alerts.type == 'SUCCESS'">
+                <div class="alert alert-success" role="alert">
+                    {{disciplinasCtrl.alerts.message}}
+                </div>
+            </div>
+        </div>
         <h4 class="page-header">Cadastrar Disciplinas</h4>
-        <form class="form" role="form">
+        <form class="form" role="form" method="post">
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text"
@@ -14,7 +27,7 @@
             <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
                 <hr>
                 <a href="#/disciplinas" class="btn btn-default">Voltar</a>
-                <button class="btn btn-primary" ng-click="disciplinasCtrl.salvarBanca()">Salvar</button>
+                <button type="button" class="btn btn-primary" ng-click="disciplinasCtrl.create()">Salvar</button>
             </div>
         </form>
     </div>

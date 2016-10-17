@@ -1,8 +1,14 @@
 /**
  * Created by paulo on 18/09/2016.
  */
-angular.module('biblioteca-concurseiro', ['ngRoute', 'ui.tinymce'])
-    .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+angular.module('biblioteca-concurseiro', ['ngRoute', 'ui.tinymce', 'ui.bootstrap'])
+    .config(['$routeProvider', '$locationProvider','$httpProvider',
+     function($routeProvider, $locationProvider, $httpProvider){
+       $httpProvider.defaults.headers.common = {};
+      $httpProvider.defaults.headers.post = {};
+      $httpProvider.defaults.headers.put = {};
+      $httpProvider.defaults.headers.patch = {};
+
         $routeProvider
             .when('/', {
                 templateUrl:'app/client/dashboard/templates/dashboard.template.html',
@@ -66,7 +72,6 @@ angular.module('biblioteca-concurseiro', ['ngRoute', 'ui.tinymce'])
                 controller : 'DisciplinasController',
                 controllerAs : 'disciplinasCtrl'
             })
-
             .when('/orgaos',{
                 templateUrl:'app/client/orgaos/templates/orgaos.template.html',
                 controller : 'OrgaosController',

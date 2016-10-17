@@ -1,4 +1,21 @@
 <div class="row">
+    <div class="alerts">
+        <div ng-if="bancasCtrl.alerts.type == 'ERROR'">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{bancasCtrl.alerts.message}}
+            </div>
+        </div>
+
+        <div ng-if="bancasCtrl.alerts.type == 'SUCCESS'">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{bancasCtrl.alerts.message}}
+            </div>
+        </div>
+    </div>
     <div class="panel" style="padding:5px;">
         <div class="panel-heading">
             <h3 class="page-header">Bancas Cadastradas</h3>
@@ -20,10 +37,27 @@
                         <a href="#/bancas/editar/{{banca.id}}">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
+                        <a href="javascript:;" ng-click="bancasCtrl.trash(banca.id)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="panel-footer">
+            <ul uib-pagination
+                ng-model="bancasCtrl.currentPage"
+                total-items="bancasCtrl.totalRows"
+                max-size="bancasCtrl.maxSize"
+                boundary-links="true"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                ng-change="bancasCtrl.pageChanged()">
+            </ul>
+
         </div>
     </div>
 </div>
