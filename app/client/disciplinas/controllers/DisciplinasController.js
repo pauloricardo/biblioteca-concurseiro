@@ -75,7 +75,7 @@
                 .then(function(result){
                     vm.alerts = {
                         'type' : 'SUCCESS',
-                        'message' : 'Disciplina Deletada com sucesso!'
+                        'message' : 'Disciplina Deletada c  om sucesso!'
                     };
                     activate();
                 })

@@ -52,7 +52,11 @@
         }   
 
         function adicionarResposta(){
-            vm.questao.respostas.push([]);
+            var params = {
+              enunciado : "",
+              correta : false
+            };
+            vm.questao.respostas.push(params);
         }
 
         function removerResposta(index){
@@ -61,17 +65,14 @@
 
         function create(){
 
-            angular.forEach(vm.questao.respostas, function(value, key){
-                vm.questao.respostas[key] = JSON.parse(JSON.stringify(value));
-            });
-
             var params = {
                 texto : vm.questao.texto,
                 disciplina_id : vm.questao.disciplina_id,
                 concurso_id : vm.questao.concurso_id,
                 cargo_id : vm.questao.cargo_id,
-                questaoresposta : vm.questao.respostas
+                questoesresposta : vm.questao.respostas
             };
+
             if($routeParams.id == undefined){
                 QuestoesDataService.create(params).then(function(result){
                     vm.alerts = {
@@ -80,6 +81,12 @@
                     };
                 })
             }else{
+                params.id = $routeParams.id;
+                angular.forEach(params.questoesresposta, function(value, key){
+                    if(!params.questoesresposta[key].questao_id){
+                        params.questoesresposta[key].questao_id = parseInt($routeParams.id);
+                    }
+                });
                 QuestoesDataService.update(params).then(function(result){
                     vm.alerts = {
                         'type' : 'SUCCESS',

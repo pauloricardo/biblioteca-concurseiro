@@ -60,10 +60,10 @@
                             <label for="">Resposta correta?</label>
                             <input type="radio"
                                    ng-model="questoesCtrl.questao.respostas[$index].correta"
-                                   ng-value=true>Sim
+                                   ng-value="1">Sim
                             <input type="radio"
                                    ng-model="questoesCtrl.questao.respostas[$index].correta"
-                                   ng-value=false>Não
+                                   ng-value="0">Não
                         </div>
 
                     <button class="btn btn-sm btn-primary" ng-click="questoesCtrl.removerResposta($index)">
