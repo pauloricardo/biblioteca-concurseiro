@@ -1,7 +1,7 @@
 /**
  * Created by paulo on 18/09/2016.
  */
-angular.module('biblioteca-concurseiro', ['ngRoute', 'ui.tinymce', 'ui.bootstrap'])
+angular.module('biblioteca-concurseiro', ['ngRoute', 'ui.tinymce', 'ui.bootstrap', 'angularFileUpload'])
     .config(['$routeProvider', '$locationProvider','$httpProvider',
      function($routeProvider, $locationProvider, $httpProvider){
        $httpProvider.defaults.headers.common = {};

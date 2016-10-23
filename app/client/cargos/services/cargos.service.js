@@ -21,7 +21,7 @@ function CargosDataService($http, $q) {
         'update' : update
     };
     return exports;
-    
+
     function create(cargo){
         return $http({
             method : 'POST',

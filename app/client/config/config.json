@@ -1,0 +1,4 @@
+{
+  "env" : "dev",
+  "url" : "http://biblioteca-concurseiro:8000"
+}

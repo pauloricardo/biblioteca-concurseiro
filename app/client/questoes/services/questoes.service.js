@@ -23,12 +23,13 @@ function QuestoesDataService($http, $q) {
     };
     return exports;
 
-    function getQuestoes(params) {
-        if (params) {
+    function getQuestoes(_params) {
+        if (_params) {
             return $http({
                 method: 'GET',
-                url: 'http://biblioteca-concurseiro:8000/api/v1/questoes/' + params['skip'] + '/' + params['top'],
-                headers: _headers
+                url: 'http://biblioteca-concurseiro:8000/api/v1/questoes',
+                headers: _headers,
+                params : _params
             });
         } else {
             return $http({

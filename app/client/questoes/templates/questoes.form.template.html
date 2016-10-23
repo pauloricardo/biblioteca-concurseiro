@@ -9,6 +9,11 @@
                           ui-tinymce="questoesCtrl.tinymceOptions"
                           ng-model="questoesCtrl.questao.texto"></textarea>
             </div>
+            <form id="my_form" action="/upload/"
+                  target="form_target" method="post" enctype="multipart/form-data">
+                <input type="file" name="imageFile" id="imageFile"
+                        file-model="questoesCtrl.imageFile" style="display:none;"/>
+            </form>
             <div class="form-group">
                 <div class="col-md-4">
                     <label for="disciplina">

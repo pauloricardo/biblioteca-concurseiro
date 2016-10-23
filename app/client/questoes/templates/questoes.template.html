@@ -18,7 +18,7 @@
                     </select>
                     <div class="clearfix"></div>
                     <br>
-                    <button class="btn btn-default">Buscar</button>
+                    <button class="btn btn-default" type="button" ng-click="questoesCtrl.buscarQuestoes(questoesCtrl.questao.disciplina_id, questoesCtrl.questao.concurso_id)">Buscar</button>
                     <a class="btn btn-primary" href="#/questoes/adicionar">Nova</a>
                     <hr>
                 </div>
@@ -48,7 +48,7 @@
                                 <i class="glyphicon glyphicon-edit"></i>
                             </a>
 
-                            <a href="javascript:;" ng-click="questoesCtrl.trash(disciplina.id)">
+                            <a href="javascript:;" ng-click="questoesCtrl.trash(questao.id)">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </td>
