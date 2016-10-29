@@ -14,10 +14,10 @@
         .controller('QuestoesController', QuestoesController);
 
     QuestoesController.$inject = ['$scope', '$route', '$routeParams', 'QuestoesDataService', 'ConcursosDataService'
-        , 'DisciplinasDataService', 'CargosDataService', '$http', 'FileUploader'];
+        , 'DisciplinasDataService', 'CargosDataService', '$http', 'FileUploader', 'QuestoesFactory', 'CommonConstants', 'Canonico'];
 
     function QuestoesController($scope, $route, $routeParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService,
-                                $http, FileUploader) {
+                                $http, FileUploader, QuestoesFactory, CommonConstants, Canonico) {
         var vm = this;
 
         vm.alerts = [];
@@ -34,6 +34,9 @@
         vm.removerResposta = removerResposta;
         vm.buscarQuestoes = buscarQuestoes;
         vm.pageChanged = pageChanged;
+        vm.multiplaEscolhaList = CommonConstants.QUESTAO.MULTIPLA_ESCOLHA;
+        vm.tipoQuestaoList = CommonConstants.QUESTAO.TIPO_QUESTAO_LIST;
+
         vm.tinymceOptions = {
             selector: 'textarea',
             plugins: 'link image',
@@ -47,7 +50,7 @@
                         uploadImage(file).then(function(result){
                             var reader = new FileReader();
                             reader.onload = function (e) {
-                                callback(vm.config.url + '/' + result.data.imagem, {
+                                callback('http://biblioteca-concurseiro:8000/' + result.data.imagem, {
                                     alt: ''
                                 });
                             };
@@ -61,11 +64,12 @@
           $http.get('app/client/config/config.json').then(function(result){
               vm.config = result;
           });
+
         }
         function uploadImage(file) {
             var fd = new FormData();
             fd.append('file', vm.imageFile);
-           return $http.post(vm.config.url + "/api/v1/questoes/uploadQuestaoFile", fd, {
+           return $http.post("http://biblioteca-concurseiro:8000/api/v1/questoes/uploadQuestaoFile", fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             });
@@ -79,14 +83,14 @@
             };
 
             QuestoesDataService.getQuestoes(params).then(function (result) {
-                vm.questoes = angular.copy(result.data.questoes);
+                vm.questoes = angular.copy(QuestoesFactory.convertList(result.data.questoes));
             });
         }
 
         function getQuestao() {
             if ($routeParams.id !== undefined) {
                 QuestoesDataService.buscaQuestaoPorID($routeParams.id).success(function (result) {
-                    vm.questao = angular.copy(result);
+                    vm.questao = angular.copy(QuestoesFactory.convert(result));
                 });
             }
         }
@@ -111,15 +115,14 @@
                 disciplina_id: vm.questao.disciplina_id,
                 concurso_id: vm.questao.concurso_id,
                 cargo_id: vm.questao.cargo_id,
+                multipla_escolha : vm.questao.multipla_escolha,
+                tipo_questao : vm.questao.tipo_questao,
                 questoesresposta: vm.questao.respostas
             };
 
             if ($routeParams.id == undefined) {
                 QuestoesDataService.create(params).then(function (result) {
-                    vm.alerts = {
-                        'type': 'SUCCESS',
-                        'message': 'Questão Cadastrada com sucesso!'
-                    };
+                    Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Cadastrada com sucesso!');
                 })
             } else {
                 params.id = $routeParams.id;
@@ -129,10 +132,8 @@
                     }
                 });
                 QuestoesDataService.update(params).then(function (result) {
-                    vm.alerts = {
-                        'type': 'SUCCESS',
-                        'message': 'Questão Cadastrada com sucesso!'
-                    };
+                    Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Atualizada com sucesso!');
+                    vm.alerts = vm.alerts[0];
                 })
             }
         }
@@ -140,10 +141,9 @@
         function trash(id) {
             QuestoesDataService.trash(id)
                 .then(function (result) {
-                    vm.alerts = {
-                        'type': 'SUCCESS',
-                        'message': 'Questão deletada com sucesso!'
-                    };
+                    Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão deletada com sucesso!');
+                    vm.alerts = vm.alerts[0];
+
                     activate();
                 })
         }
@@ -186,11 +186,12 @@
             });
 
             QuestoesDataService.getQuestoes({'skip': 0, 'top': 10}).then(function (result) {
-                vm.questoes = angular.copy(result.data.questoes);
+                vm.questoes = angular.copy(QuestoesFactory.convertList(result.data.questoes));
                 vm.totalRows = angular.copy(result.data['X-Total-Rows']);
             });
 
         }
+
 
         activate();
 
