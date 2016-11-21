@@ -23,9 +23,9 @@ function QuestoesFactory(CommonConstants) {
 
         if(item){
             converted.id = item.id;
-            converted.disciplina_id = item.disciplina_id;
-            converted.cargo_id = item.cargo_id;
-            converted.concurso_id = item.concurso_id;
+            converted.disciplina_id = parseInt(item.disciplina_id);
+            converted.cargo_id = parseInt(item.cargo_id);
+            converted.concurso_id = parseInt(item.concurso_id);
             switch(item.tipo_questao) {
                 case CommonConstants.QUESTAO.TIPO_QUESTAO.MEDIO:
                     converted.label_tipo_questao = "MÉDIO";
@@ -37,8 +37,8 @@ function QuestoesFactory(CommonConstants) {
                     converted.label_tipo_questao = "SUPERIOR";
                     break;
             }
-            converted.multipla_escolha = item.multipla_escolha;
-            converted.tipo_questao = item.tipo_questao;
+            converted.multipla_escolha = parseInt(item.multipla_escolha);
+            converted.tipo_questao = parseInt(item.tipo_questao);
             converted.concurso = item.concurso;
             converted.disciplina = item.disciplina;
             converted.prova = item.prova;
