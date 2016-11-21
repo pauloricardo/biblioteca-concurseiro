@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="alerts">
+        <div ng-if="assuntosCtrl.alerts[0].type == 'ERROR'">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{assuntosCtrl.alerts[0].message}}
+            </div>
+        </div>
+
+        <div ng-if="assuntosCtrl.alerts[0].type == 'SUCCESS'">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{assuntosCtrl.alerts[0].message}}
+            </div>
+        </div>
+    </div>
+    <div class="panel" style="padding:5px;">
+        <div class="panel-heading">
+            <h3 class="page-header">Assuntos Cadastrados</h3>
+            <a class="btn btn-primary" href="#/assuntos/adicionar">Nova</a>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Disciplina</th>
+                    <th>Nome</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="assunto in assuntosCtrl.assuntos.assuntos track by assunto.id">
+                    <td>{{assunto.id}}</td>
+                    <td>{{assunto.disciplina.nome}}</td>
+                    <td>{{assunto.nome}}</td>
+                    <td>
+                        <a href="#/assuntos/editar/{{assunto.id}}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="javascript:;" ng-click="assuntosCtrl.trash(assunto.id)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <ul uib-pagination
+                ng-model="assuntosCtrl.currentPage"
+                total-items="assuntosCtrl.totalRows"
+                max-size="assuntosCtrl.maxSize"
+                boundary-links="true"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                ng-change="assuntosCtrl.pageChanged()">
+            </ul>
+
+        </div>
+    </div>
+</div>

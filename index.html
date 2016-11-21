@@ -50,32 +50,40 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <ul class="nav nav-stacked nav-pills">
-                        <li class="active">
-                            <a href="#/dashboard">Principal</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" data-toggle="dropdown">Questões<strong
-                                    class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#/questoes">Cadastrar questão</a>
-                                    <a href="#/orgaos">Cadastrar orgão</a>
-                                    <a href="#/disciplinas">Cadastrar disciplina</a>
-                                    <a href="#/bancas">Cadastrar banca</a>
-                                    <a href="#/concursos">Cadastrar concurso</a>
-                                    <a href="#/cargos">Cadastrar cargo</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <uib-accordion close-others="oneAtATime">
+                        <div uib-accordion-group class="panel-default" heading="Assuntos" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                            <a href="#/assuntos" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Bancas">
+                            <a href="#/bancas" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Cargos" >
+                            <a href="#/cargos" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Concursos">
+                            <a href="#/concursos" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Disciplinas">
+                            <a href="#/disciplinas" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Orgãos">
+                            <a href="#/orgaos" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Provas">
+                            <a href="#/provas" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Questões" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                            <a href="#/questoes" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                    </uib-accordion>
                 </div>
+
                 <div class="col-md-10">
                     <div ng-view></div>
                 </div>
+                </div>
             </div>
         </div>
-    </div>
 </div>
 <script src="bower_components/tinymce/tinymce.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
@@ -88,27 +96,38 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="app/client/app.js"></script>
-<script src="app/client/common/constants.js"></script>
-<script src="app/client/common/canonico.functions.js"></script>
+<script src="app/app.js"></script>
+<script src="app/common/constants.js"></script>
+<script src="app/common/canonico.functions.js"></script>
+<script src="app/common/config.js"></script>
 
-<script src="app/client/questoes/services/questoes.service.js"></script>
-<script src="app/client/questoes/factory/questoes.factory.js"></script>
-<script src="app/client/questoes/directives/fileModel.js"></script>
-<script src="app/client/disciplinas/services/disciplinas.service.js"></script>
-<script src="app/client/orgaos/services/orgaos.service.js"></script>
-<script src="app/client/bancas/services/bancas.service.js"></script>
-<script src="app/client/cargos/services/cargos.service.js"></script>
-<script src="app/client/concursos/services/concursos.service.js"></script>
+<script src="app/questoes/services/questoes.service.js"></script>
+<script src="app/questoes/factory/questoes.factory.js"></script>
+<script src="app/questoes/directives/fileModel.js"></script>
+
+<script src="app/provas/services/provas.service.js"></script>
+<script src="app/provas/factories/provas.factory.js"></script>
+<script src="app/provas/controllers/provas.controller.js"></script>
+
+<script src="app/assuntos/services/assuntos.service.js"></script>
+<script src="app/assuntos/factories/assuntos.factory.js"></script>
+<script src="app/assuntos/controllers/assuntos.controller.js"></script>
 
 
-<script src="app/client/dashboard/controllers/DashboardController.js"></script>
-<script src="app/client/bancas/controllers/BancasController.js"></script>
-<script src="app/client/orgaos/controllers/OrgaosController.js"></script>
-<script src="app/client/questoes/controllers/QuestoesController.js"></script>
-<script src="app/client/disciplinas/controllers/DisciplinasController.js"></script>
-<script src="app/client/cargos/controllers/CargosController.js"></script>
-<script src="app/client/concursos/controllers/ConcursosController.js"></script>
+<script src="app/disciplinas/services/disciplinas.service.js"></script>
+<script src="app/orgaos/services/orgaos.service.js"></script>
+<script src="app/bancas/services/bancas.service.js"></script>
+<script src="app/cargos/services/cargos.service.js"></script>
+<script src="app/concursos/services/concursos.service.js"></script>
+
+
+<script src="app/dashboard/controllers/DashboardController.js"></script>
+<script src="app/bancas/controllers/BancasController.js"></script>
+<script src="app/orgaos/controllers/OrgaosController.js"></script>
+<script src="app/questoes/controllers/QuestoesController.js"></script>
+<script src="app/disciplinas/controllers/DisciplinasController.js"></script>
+<script src="app/cargos/controllers/CargosController.js"></script>
+<script src="app/concursos/controllers/ConcursosController.js"></script>
 <script src="public/js/scripts.js"></script>
 
 </body>
