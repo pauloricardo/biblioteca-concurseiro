@@ -2,7 +2,7 @@ CommonConfig.$inject = ['$http', '$q'];
 function CommonConfig($http, $q) {
     var vm = this;
     vm.config = {
-        "host" : "http://biblioteca-concurseiro:8000/",
+        "host" : "http://www.quadrilatero.net.br/server/public",
         "apiContext" : "api/",
         "version" : "v1"
     };
@@ -22,7 +22,6 @@ function CommonConfig($http, $q) {
 
     };
 }
-
 angular
     .module('biblioteca-concurseiro')
     .factory('CommonConfig', CommonConfig);

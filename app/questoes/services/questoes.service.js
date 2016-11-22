@@ -2,7 +2,7 @@
  * Created by paulo on 18/09/2016.
  */
 angular
-    .module('biblioteca-concurseiro')
+    .module('biblioteca-concurseiro-questoes')
     .service('QuestoesDataService', QuestoesDataService);
 
 QuestoesDataService.$inject = ['$http', '$q', 'CommonConfig'];

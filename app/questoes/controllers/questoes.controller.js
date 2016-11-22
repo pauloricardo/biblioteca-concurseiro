@@ -10,7 +10,7 @@
 (function () {
     'use strict';
 
-    angular.module('biblioteca-concurseiro')
+    angular.module('biblioteca-concurseiro-questoes')
         .controller('QuestoesController', QuestoesController);
 
     QuestoesController.$inject = ['$scope', '$route', '$routeParams', 'QuestoesDataService', 'ConcursosDataService'

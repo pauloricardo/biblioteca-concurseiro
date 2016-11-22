@@ -6,7 +6,7 @@
  *
  *
  * */
-angular.module('biblioteca-concurseiro')
+angular.module('biblioteca-concurseiro-questoes')
     .factory('QuestoesFactory', QuestoesFactory);
 
 QuestoesFactory.$inject = ['CommonConstants'];

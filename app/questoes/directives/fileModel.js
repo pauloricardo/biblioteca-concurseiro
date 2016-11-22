@@ -7,7 +7,7 @@
  *
  * @restrict A
  * */
-angular.module('biblioteca-concurseiro')
+angular.module('biblioteca-concurseiro-questoes')
     .directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
