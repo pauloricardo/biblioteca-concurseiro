@@ -1,0 +1,19 @@
+<div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="page-header">Questões em Foco | Login</h4>
+        </div>
+        <div class="modal-body">
+            <form ng-submit="LoginModalCtrl.submit(_email, _password)">
+                    <div class="form-group">
+                        <input type="email" ng-model="_email" class="form-control"/>
+                        <input type="password" ng-model="_password" class="form-control" />
+                        <button class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="LoginModalCtrl.cancel()" class="btn btn-primary">Cancel</button>
+        </div>
+    </div>
+</div>
