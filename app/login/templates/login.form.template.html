@@ -1,16 +1,24 @@
 <div>
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="page-header">Questões em Foco | Login</h4>
+            <h4>Questões em Foco | Login</h4>
         </div>
         <div class="modal-body">
-            <form ng-submit="LoginModalCtrl.submit(_email, _password)">
-                    <div class="form-group">
-                        <input type="email" ng-model="_email" class="form-control"/>
-                        <input type="password" ng-model="_password" class="form-control" />
-                        <button class="btn btn-primary">Login</button>
+            <form ng-submit="loginModalCtrl.submit(loginModalCtrl._email, loginModalCtrl._password)">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label for="">Login</label>
+                        <input type="email" ng-model="loginModalCtrl._email" class="form-control"/>
                     </div>
-                </form>
+                    <div class="col-md-6">
+                        <label for="">Senha</label>
+                        <input type="password" ng-model="loginModalCtrl._password" class="form-control"/>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" >Login</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="modal-footer">
             <button ng-click="LoginModalCtrl.cancel()" class="btn btn-primary">Cancel</button>

@@ -51,35 +51,36 @@
             <div class="row">
                 <div class="col-md-2">
                     <uib-accordion close-others="oneAtATime">
-                        <div uib-accordion-group class="panel-default" heading="Assuntos" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                            <a href="#/app/assuntos" class="btn btn-default btn-block">Visualizar</a>
+                        <div uib-accordion-group class="panel-default" heading="Assuntos" is-disabled="status.isFirstDisabled">
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Bancas">
-                            <a href="#/app/bancas" class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Cargos" >
-                            <a href="#/app/cargos" class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Concursos">
-                            <a href="#/app/concursos" class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Disciplinas">
-                            <a href="#/app/disciplinas" class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Orgãos">
-                            <a href="#/app/orgaos" class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Provas">
-                            <a href="#/app/provas" class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block">Visualizar</a>
                         </div>
-                        <div uib-accordion-group class="panel-default" heading="Questões" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                            <a href="#/app/questoes" class="btn btn-default btn-block">Visualizar</a>
+                        <div uib-accordion-group class="panel-default" heading="Questões"  is-disabled="status.isFirstDisabled">
+                            <a ui-sref="app.questoes.home" class="btn btn-default btn-block">Visualizar</a>
                         </div>
                     </uib-accordion>
                 </div>
 
                 <div class="col-md-10">
-                    <div ng-view></div>
+                    <div ui-view=""></div>
+                    <div ui-view="questao-form"></div>
                 </div>
                 </div>
             </div>
@@ -88,6 +89,7 @@
 <script src="bower_components/tinymce/tinymce.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 <script src="bower_components/angular-ui-tinymce/dist/tinymce.min.js"></script>
 <script src="bower_components/angular-file-upload/dist/angular-file-upload.js"></script>
 <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
@@ -98,6 +100,11 @@
 
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app/app.js"></script>
+<script src="app/login/services/authservice.js"></script>
+<script src="app/login/services/user.service.js"></script>
+<script src="app/login/controllers/login.controller.js"></script>
+<script src="app/login/factory/authinterceptor.js"></script>
+<script src="app/login/services/login.modal.service.js"></script>
 <script src="public/js/scripts.js"></script>
 </body>
 </html>

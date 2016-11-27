@@ -1,16 +1,16 @@
-<div class="row" ng-init="questoesCtrl.getQuestao()">
+<div class="row" ng-init="questoesFormCtrl.getQuestao()">
     <div class="col-md-12">
         <div class="alerts">
-            <div ng-if="questoesCtrl.alerts.type == 'ERROR'">
+            <div ng-if="questoesFormCtrl.alerts.type == 'ERROR'">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    {{questoesCtrl.alerts.message}}
+                    {{questoesFormCtrl.alerts.message}}
                 </div>
             </div>
-            <div ng-if="questoesCtrl.alerts.type == 'SUCCESS'">
+            <div ng-if="questoesFormCtrl.alerts.type == 'SUCCESS'">
                 <div class="alert alert-success" role="alert">
-                    {{questoesCtrl.alerts.message}}
+                    {{questoesFormCtrl.alerts.message}}
                 </div>
             </div>
         </div>
@@ -20,20 +20,20 @@
                 <label for="descricao">Descrição</label>
                 <textarea name="descricao"
                           id="descricao"
-                          ui-tinymce="questoesCtrl.tinymceOptions"
-                          ng-model="questoesCtrl.questao.texto"></textarea>
+                          ui-tinymce="questoesFormCtrl.tinymceOptions"
+                          ng-model="questoesFormCtrl.questao.texto"></textarea>
             </div>
             <form id="my_form" action="/upload/"
                   target="form_target" method="post" enctype="multipart/form-data">
                 <input type="file" name="imageFile" id="imageFile"
-                       file-model="questoesCtrl.imageFile" style="display:none;"/>
+                       file-model="questoesFormCtrl.imageFile" style="display:none;"/>
             </form>
             <div class="form-group">
                 <label for="descricao">Texto Auxiliar</label>
                 <textarea name="descricao"
                           id="descricao"
-                          ui-tinymce="questoesCtrl.tinymceOptions"
-                          ng-model="questoesCtrl.questao.texto_auxiliar"></textarea>
+                          ui-tinymce="questoesFormCtrl.tinymceOptions"
+                          ng-model="questoesFormCtrl.questao.texto_auxiliar"></textarea>
             </div>
             <div class="form-group">
                 <div class="row">
@@ -41,9 +41,9 @@
                         <label for="disciplina">
                             Disciplina
                         </label>
-                        <select name="disciplina" id="disciplina" ng-model="questoesCtrl.questao.disciplina_id"
+                        <select name="disciplina" id="disciplina" ng-model="questoesFormCtrl.questao.disciplina_id"
                                 class="form-control"
-                                ng-options="item.id as item.nome for item in questoesCtrl.disciplinas">
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.disciplinas">
                             <option value="">Selecione uma disciplina..</option>
                         </select>
                     </div>
@@ -53,9 +53,9 @@
                         </label>
                         <select name=""
                                 id="concurso"
-                                ng-model="questoesCtrl.questao.concurso_id"
+                                ng-model="questoesFormCtrl.questao.concurso_id"
                                 class="form-control"
-                                ng-options="item.id as (item.orgaos.nome + ' / ' + item.ano) for item in questoesCtrl.concursos">
+                                ng-options="item.id as (item.orgaos.nome + ' / ' + item.ano) for item in questoesFormCtrl.concursos">
                             <option value="">Concurso</option>
                         </select>
                     </div>
@@ -65,9 +65,9 @@
                         </label>
                         <select name=""
                                 id="concurso"
-                                ng-model="questoesCtrl.questao.cargo_id"
+                                ng-model="questoesFormCtrl.questao.cargo_id"
                                 class="form-control"
-                                ng-options="item.id as item.nome for item in questoesCtrl.cargos">
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.cargos">
                             <option value="">Cargo</option>
                         </select>
                     </div>
@@ -75,8 +75,8 @@
                         <label for="multipla_escolha">
                             Múltipla Escolha
                         </label>
-                        <select ng-model="questoesCtrl.questao.multipla_escolha" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesCtrl.multiplaEscolhaList">
+                        <select ng-model="questoesFormCtrl.questao.multipla_escolha" class="form-control"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.multiplaEscolhaList">
                             <option value="">Múltipla Escolha</option>
                         </select>
                     </div>
@@ -84,8 +84,8 @@
                         <label for="nivel">
                             Nível
                         </label>
-                        <select ng-model="questoesCtrl.questao.tipo_questao" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesCtrl.tipoQuestaoList">
+                        <select ng-model="questoesFormCtrl.questao.tipo_questao" class="form-control"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.tipoQuestaoList">
                             <option value="">Nível</option>
                         </select>
                     </div>
@@ -93,8 +93,8 @@
                         <label for="nivel">
                             Assunto
                         </label>
-                        <select ng-model="questoesCtrl.questao.assunto_id" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesCtrl.assuntos.assuntos">
+                        <select ng-model="questoesFormCtrl.questao.assunto_id" class="form-control"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.assuntos.assuntos">
                             <option value="">Nível</option>
                         </select>
                     </div>
@@ -102,8 +102,8 @@
                         <label for="nivel">
                             Prova
                         </label>
-                        <select ng-model="questoesCtrl.questao.prova_id" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesCtrl.provas.provas">
+                        <select ng-model="questoesFormCtrl.questao.prova_id" class="form-control"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.provas.provas">
                             <option value="">Nível</option>
                         </select>
                     </div>
@@ -112,28 +112,28 @@
             <br>
             <div class="form-group" style="width:100%">
                 <p class="page-header">Respostas</p>
-                <button class="btn btn-sm btn-primary" ng-click="questoesCtrl.adicionarResposta()"
+                <button class="btn btn-sm btn-primary" ng-click="questoesFormCtrl.adicionarResposta()"
                         style="margin-left:30px; margin-bottom:10px;">
                     <i class="glyphicon glyphicon-plus"></i>
                 </button>
-                <div ng-repeat="value in questoesCtrl.questao.respostas track by $index" class="col-md-12"
+                <div ng-repeat="value in questoesFormCtrl.questao.respostas track by $index" class="col-md-12"
                      style="margin-bottom:10px;">
                     <div class="col-md-6">
-                        <input type="text" ng-model="questoesCtrl.questao.respostas[$index].enunciado"
+                        <input type="text" ng-model="questoesFormCtrl.questao.respostas[$index].enunciado"
                                placeholder="Enunciado.."
                                class="form-control">
                     </div>
                     <div class="col-md-5">
                         <label for="">Resposta correta?</label>
                         <input type="radio"
-                               ng-model="questoesCtrl.questao.respostas[$index].correta"
+                               ng-model="questoesFormCtrl.questao.respostas[$index].correta"
                                ng-value="1">Sim
                         <input type="radio"
-                               ng-model="questoesCtrl.questao.respostas[$index].correta"
+                               ng-model="questoesFormCtrl.questao.respostas[$index].correta"
                                ng-value="0">Não
                     </div>
 
-                    <button class="btn btn-sm btn-primary" ng-click="questoesCtrl.removerResposta($index)">
+                    <button class="btn btn-sm btn-primary" ng-click="questoesFormCtrl.removerResposta($index)">
                         <i class="glyphicon glyphicon-minus"></i>
                     </button>
                 </div>
@@ -142,7 +142,7 @@
             <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
                 <hr>
                 <a href="#/questoes" class="btn btn-default">Voltar</a>
-                <button class="btn btn-primary" ng-click="questoesCtrl.create()">Salvar</button>
+                <button class="btn btn-primary" ng-click="questoesFormCtrl.create()">Salvar</button>
             </div>
         </form>
     </div>

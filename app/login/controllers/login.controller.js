@@ -11,13 +11,24 @@
   'use strict';
 
   angular.module('biblioteca-concurseiro')
-    .controller('LoginController', LoginController);
+    .controller('LoginModalController', LoginController);
 
-  LoginController.$inject = ['$route', '$routeParams', 'LoginDataService'];
+  LoginController.$inject = ['$scope', 'UserService', 'AuthService', '$uibModalInstance'];
 
-  function LoginController($route,$routeParams, LoginDataService){
+  function LoginController($scope, UserService, AuthService, $uibModalInstance){
     var vm = this;
-    
+
+    this.cancel = $uibModalInstance.$dismiss;
+
+    this.submit = function (email, password) {
+      var params  = {
+        'email' : email,
+        'password' : password
+      };
+      UserService.login(params).then(function () {
+        $uibModalInstance.close('token');
+      });
+    };
     function activate(){
     }
     activate();

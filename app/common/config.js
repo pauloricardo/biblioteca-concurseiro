@@ -1,8 +1,8 @@
-CommonConfig.$inject = ['$http', '$q'];
-function CommonConfig($http, $q) {
+CommonConfig.$inject = ['$http', '$q', '$window'];
+function CommonConfig($http, $q, $window) {
     var vm = this;
     vm.config = {
-        "host" : "http://www.quadrilatero.net.br/server/public",
+        "host" : "http://biblioteca-concurseiro:8000/",
         "apiContext" : "api/",
         "version" : "v1"
     };
@@ -18,8 +18,13 @@ function CommonConfig($http, $q) {
         },
         getBaseUrl : function(){
             return vm.config.host + vm.config.apiContext + vm.config.version;
+        },
+        getLoginUrl : function(){
+            return vm.config.host;
+        },
+        getToken : function(){
+            return $window.localStorage['jwtToken'];
         }
-
     };
 }
 angular

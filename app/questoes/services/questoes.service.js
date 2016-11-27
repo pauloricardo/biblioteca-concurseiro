@@ -2,17 +2,16 @@
  * Created by paulo on 18/09/2016.
  */
 angular
-    .module('biblioteca-concurseiro-questoes')
+    .module('biblioteca-concurseiro')
     .service('QuestoesDataService', QuestoesDataService);
 
-QuestoesDataService.$inject = ['$http', '$q', 'CommonConfig'];
-function QuestoesDataService($http, $q, CommonConfig) {
+QuestoesDataService.$inject = ['$http', '$q', 'CommonConfig', 'AuthService'];
+function QuestoesDataService($http, $q, CommonConfig, AuthService) {
     var vm = this;
 
 
     var _headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept' : 'application/json'
+        'Content-Type' : 'application/json'
     };
     var exports = {
         'getQuestoes': getQuestoes,
@@ -25,16 +24,12 @@ function QuestoesDataService($http, $q, CommonConfig) {
 
     function getQuestoes(_params) {
         if (_params) {
-            return $http({
-                method: 'GET',
-                url: CommonConfig.getBaseUrl() + '/questoes',
+            return $http.get(CommonConfig.getBaseUrl() + '/questoes',{
                 headers: _headers,
                 params : _params
             });
         } else {
-            return $http({
-                method: 'GET',
-                url: CommonConfig.getBaseUrl() + '/questoes',
+            return $http.get(CommonConfig.getBaseUrl() + '/questoes',{
                 headers: _headers
             });
         }

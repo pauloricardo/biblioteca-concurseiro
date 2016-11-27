@@ -11,13 +11,13 @@
     'use strict';
 
     angular.module('biblioteca-concurseiro')
-        .controller('QuestoesController', QuestoesController);
+        .controller('QuestoesFormController', QuestoesFormController);
 
-    QuestoesController.$inject = ['$scope','$state', '$stateParams', 'QuestoesDataService', 'ConcursosDataService'
+    QuestoesFormController.$inject = ['$scope','$state', '$stateParams', 'QuestoesDataService', 'ConcursosDataService'
         , 'DisciplinasDataService', 'CargosDataService', '$http', 'FileUploader', 'QuestoesFactory', 'CommonConstants', 'Canonico',
     'AssuntosDataService', 'ProvasDataService'];
 
-    function QuestoesController($scope,$state,$stateParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService,
+    function QuestoesFormController($scope,$state,$stateParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService,
                                 $http, FileUploader, QuestoesFactory, CommonConstants, Canonico, AssuntosDataService, ProvasDataService) {
         var vm = this;
 
@@ -33,9 +33,6 @@
         vm.trash = trash;
         vm.adicionarResposta = adicionarResposta;
         vm.removerResposta = removerResposta;
-        vm.buscarQuestoes = buscarQuestoes;
-        vm.pageChanged = pageChanged;
-        vm.cleanSearch = cleanSearch;
         vm.adicionar = adicionar;
 
         vm.multiplaEscolhaList = CommonConstants.QUESTAO.MULTIPLA_ESCOLHA;
@@ -64,12 +61,6 @@
                 }
             }
         };
-        function getConfig(){
-          $http.get('app/client/config/config.json').then(function(result){
-              vm.config = result;
-          });
-
-        }
         function uploadImage(file) {
             var fd = new FormData();
             fd.append('file', vm.imageFile);
@@ -79,21 +70,9 @@
             });
         }
 
-        function pageChanged() {
-            var inicio = (vm.currentPage * 10) - 10;
-            var params = {
-                'skip': inicio,
-                'top': 10
-            };
-
-            QuestoesDataService.getQuestoes(params).then(function (result) {
-                vm.questoes = angular.copy(QuestoesFactory.convertList(result.data.questoes));
-            });
-        }
-
         function getQuestao() {
             if ($stateParams.id !== undefined) {
-                QuestoesDataService.buscaQuestaoPorID($routeParams.id).success(function (result) {
+                QuestoesDataService.buscaQuestaoPorID(400).success(function (result) {
                     vm.questao = angular.copy(QuestoesFactory.convert(result));
                 });
             }
@@ -112,8 +91,8 @@
             vm.questao.respostas.splice(index, 1);
         }
         function adicionar(){
-            $state.transitionTo('app.questoes.adicionar', {}, {
-                reload:true, inherit: true
+            $state.go('app.questoes.adicionar', {}, {
+                reload:true
             });
         }
         function create() {
@@ -136,7 +115,7 @@
                     Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Cadastrada com sucesso!');
                 })
             } else {
-                params.id = $routeParams.id;
+                params.id = 400;
                 angular.forEach(params.questoesresposta, function (value, key) {
                     if (!params.questoesresposta[key].questao_id) {
                         params.questoesresposta[key].questao_id = parseInt($routeParams.id);
@@ -159,23 +138,7 @@
                 })
         }
 
-        function buscarQuestoes() {
-            var params = {
-                'filtroDisciplina': vm.questao.disciplina_id,
-                'filtroConcurso': vm.questao.concurso_id,
-                'filtroMultiplaEscolha' : vm.questao.filtroMultiplaEscolha,
-                'filtroTipoQuestao' : vm.questao.filtroTipoQuestao,
-                'skip': 0,
-                'top': 10
-            };
-            QuestoesDataService.getQuestoes(params).then(function (result) {
-                vm.questoes = angular.copy(result.data.questoes);
-                vm.totalRows = angular.copy(result.data['X-Total-Rows']);
-            });
-        }
-
         function activate() {
-            console.log("activate");
             if (!vm.questao.respostas) {
                 vm.questao.respostas = [
                     {
@@ -187,8 +150,6 @@
             ConcursosDataService.getConcursos().then(function (result) {
                 vm.concursos = angular.copy(result.data.concursos);
             });
-
-
             DisciplinasDataService.getDisciplinas().then(function (result) {
                 vm.disciplinas = angular.copy(result.data.disciplinas);
             });
@@ -202,17 +163,7 @@
             ProvasDataService.getProvas().then(function (result) {
                 vm.provas = angular.copy(result.data);
             });
-            QuestoesDataService.getQuestoes({'skip': 0, 'top': 10}).then(function (result) {
-                vm.questoes = angular.copy(QuestoesFactory.convertList(result.data.questoes));
-                vm.totalRows = angular.copy(result.data['X-Total-Rows']);
-            });
-
         }
-        function cleanSearch(){
-            buscarQuestoes();
-        }
-
-
         activate();
 
     }
