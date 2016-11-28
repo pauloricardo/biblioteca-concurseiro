@@ -13,9 +13,9 @@
     angular.module('biblioteca-concurseiro')
         .controller('CargosController', CargosController);
 
-    CargosController.$inject = ['$route', '$routeParams', 'CargosDataService'];
+    CargosController.$inject = ['$state', '$stateParams', 'CargosDataService'];
 
-    function CargosController($route,$routeParams, CargosDataService){
+    function CargosController($state,$stateParams, CargosDataService){
         var vm = this;
 
         vm.getCargo = getCargo;
@@ -40,14 +40,14 @@
             });
         }
         function getCargo(){
-            if ($routeParams.id !== undefined) {
-                CargosDataService.getCargo($routeParams.id).success(function(result){
+            if ($stateParams.id !== undefined) {
+                CargosDataService.getCargo($stateParams.id).success(function(result){
                     vm.cargo = angular.copy(result);
                 });
             }
         }
         function create(){
-            if($routeParams.id == undefined){
+            if($stateParams.id == undefined){
                 CargosDataService.create({
                     nome : vm.cargo.nome
                 }).then(function(result){
@@ -58,7 +58,7 @@
                 })
             }else{
                 CargosDataService.update({
-                    id : $routeParams.id,
+                    id : $stateParams.id,
                     nome : vm.cargo.nome
                 }).then(function(result){
                     vm.alerts = {
@@ -87,7 +87,6 @@
             };
 
             CargosDataService.getCargos(params).then(function(result){
-                console.log(result);
                 vm.cargos = angular.copy(result.data.cargos);
                 vm.totalRows = angular.copy(result.data['X-Total-Rows']);
             });

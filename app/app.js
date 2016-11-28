@@ -195,8 +195,13 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                         }]
                     }
                 })
+                /** assuntos **/
                 .state('app.assuntos', {
-                    url: '/app/assuntos',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.assuntos.home', {
+                    url: '/assuntos',
                     controller: 'AssuntosController',
                     controllerAs: 'assuntosCtrl',
                     templateUrl: 'app/assuntos/templates/assuntos.template.html',
@@ -208,6 +213,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/assuntos/controllers/assuntos.controller.js",
                                     "app/assuntos/services/assuntos.service.js",
                                     "app/assuntos/factories/assuntos.factory.js",
+                                    "app/common/config.js",
+
                                     "app/disciplinas/services/disciplinas.service.js",
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
@@ -217,7 +224,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.assuntos.adicionar', {
-                    url: '/app/assuntos/adicionar',
+                    url: '/assuntos/adicionar',
                     controller: 'AssuntosController',
                     controllerAs: 'assuntosCtrl',
                     templateUrl: 'app/assuntos/templates/assuntos.form.html',
@@ -228,6 +235,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/assuntos/controllers/assuntos.controller.js",
                                     "app/assuntos/services/assuntos.service.js",
+                                    "app/common/config.js",
+
                                     "app/assuntos/factories/assuntos.factory.js",
                                     "app/disciplinas/services/disciplinas.service.js",
                                     "app/common/constants.js",
@@ -238,7 +247,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.assuntos.editar', {
-                    url: '/app/assuntos/editar/:id',
+                    url: '/assuntos/editar/:id',
                     controller: 'AssuntosController',
                     controllerAs: 'assuntosCtrl',
                     templateUrl: 'app/assuntos/templates/assuntos.form.html',
@@ -250,6 +259,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/assuntos/controllers/assuntos.controller.js",
                                     "app/assuntos/services/assuntos.service.js",
                                     "app/assuntos/factories/assuntos.factory.js",
+                                    "app/common/config.js",
+
                                     "app/disciplinas/services/disciplinas.service.js",
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
@@ -259,7 +270,11 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.bancas', {
-                    url: '/app/bancas',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.bancas.home', {
+                    url: '/bancas',
                     controller: 'BancasController',
                     controllerAs: 'bancasCtrl',
                     templateUrl: 'app/bancas/templates/bancas.template.html',
@@ -271,40 +286,18 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/common/config.js",
                                     "app/bancas/controllers/bancas.controller.js",
                                     "app/bancas/services/bancas.service.js",
-                                    "app/common/constants.js",
-                                    "app/common/canonico.functions.js"
-                                ]
-                            })
-                        }]
-                    }
-                })
-                .state('app.bancas.adicionar', {
-                    url: '/app/bancas/adicionar',
-                    views: {
-                        'app-view': {
-                            controller: 'BancasController',
-                            controllerAs: 'bancasCtrl',
-                            templateUrl: 'app/bancas/templates/bancas.form.html'
-                        }
-                    },
-                    resolve: {
-                        loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                            return $ocLazyLoad.load({
-                                serie: true,
-                                files: [
                                     "app/common/config.js",
-                                    "app/bancas/controllers/bancas.controller.js",
-                                    "app/bancas/services/bancas.service.js",
+
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
-
                                 ]
                             })
                         }]
                     }
                 })
-                .state('app.bancas.editar', {
-                    url: '/app/bancas/editar/:id',
+
+                .state('app.bancas.adicionar', {
+                    url: '/bancas/adicionar',
                     controller: 'BancasController',
                     controllerAs: 'bancasCtrl',
                     templateUrl: 'app/bancas/templates/bancas.form.html',
@@ -316,6 +309,31 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/common/config.js",
                                     "app/bancas/controllers/bancas.controller.js",
                                     "app/bancas/services/bancas.service.js",
+                                    "app/common/config.js",
+
+                                    "app/common/constants.js",
+                                    "app/common/canonico.functions.js"
+
+                                ]
+                            })
+                        }]
+                    }
+                })
+                .state('app.bancas.editar', {
+                    url: '/bancas/editar/:id',
+                    controller: 'BancasController',
+                    controllerAs: 'bancasCtrl',
+                    templateUrl: 'app/bancas/templates/bancas.form.html',
+                    resolve: {
+                        loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                serie: true,
+                                files: [
+                                    "app/common/config.js",
+                                    "app/bancas/controllers/bancas.controller.js",
+                                    "app/bancas/services/bancas.service.js",
+                                    "app/common/config.js",
+
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
                                 ]
@@ -324,7 +342,11 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.cargos', {
-                    url: '/app/cargos',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.cargos.home', {
+                    url: '/cargos',
                     controller: 'CargosController',
                     controllerAs: 'cargosCtrl',
                     templateUrl: 'app/cargos/templates/cargos.template.html',
@@ -336,6 +358,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/cargos/controllers/cargos.controller.js",
                                     "app/cargos/services/cargos.service.js",
                                     "app/common/constants.js",
+                                    "app/common/config.js",
+
                                     "app/common/canonico.functions.js"
                                 ]
                             })
@@ -343,7 +367,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.cargos.adicionar', {
-                    url: '/app/cargos/adicionar',
+                    url: '/adicionar',
                     controller: 'CargosController',
                     controllerAs: 'cargosCtrl',
                     templateUrl: 'app/cargos/templates/cargos.form.html',
@@ -354,6 +378,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/cargos/controllers/cargos.controller.js",
                                     "app/cargos/services/cargos.service.js",
+                                    "app/common/config.js",
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
                                 ]
@@ -362,7 +387,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.cargos.editar', {
-                    url: '/app/cargos/editar/:id',
+                    url: '/cargos/editar/:id',
                     controller: 'CargosController',
                     controllerAs: 'cargosCtrl',
                     templateUrl: 'app/cargos/templates/cargos.form.html',
@@ -373,6 +398,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/cargos/controllers/cargos.controller.js",
                                     "app/cargos/services/cargos.service.js",
+                                    "app/common/config.js",
+
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
                                 ]
@@ -381,7 +408,11 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.orgaos', {
-                    url: '/app/orgaos',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.orgaos.home', {
+                    url: '/orgaos',
                     controller: 'OrgaosController',
                     controllerAs: 'orgaosCtrl',
                     templateUrl: 'app/orgaos/templates/orgaos.template.html',
@@ -391,6 +422,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 serie: true,
                                 files: [
                                     "app/orgaos/controllers/orgaos.controller.js",
+                                    "app/common/config.js",
+
                                     "app/orgaos/services/orgaos.service.js",
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
@@ -400,7 +433,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.orgaos.adicionar', {
-                    url: '/app/orgaos/adicionar',
+                    url: '/orgaos/adicionar',
                     controller: 'OrgaosController',
                     controllerAs: 'orgaosCtrl',
                     templateUrl: 'app/orgaos/templates/orgaos.form.html',
@@ -411,6 +444,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/orgaos/controllers/orgaos.controller.js",
                                     "app/orgaos/services/orgaos.service.js",
+                                    "app/common/config.js",
+
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
                                 ]
@@ -419,7 +454,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.orgaos.editar', {
-                    url: '/app/orgaos/editar/:id',
+                    url: '/orgaos/editar/:id',
                     controller: 'OrgaosController',
                     controllerAs: 'orgaosCtrl',
                     templateUrl: 'app/orgaos/templates/orgaos.form.html',
@@ -431,6 +466,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/orgaos/controllers/orgaos.controller.js",
                                     "app/orgaos/services/orgaos.service.js",
                                     "app/common/constants.js",
+                                    "app/common/config.js",
+
                                     "app/common/canonico.functions.js"
                                 ]
                             })
@@ -438,7 +475,11 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.disciplinas', {
-                    url: '/app/disciplinas',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.disciplinas.home', {
+                    url: '/disciplinas',
                     controller: 'DisciplinasController',
                     controllerAs: 'disciplinasCtrl',
                     templateUrl: 'app/disciplinas/templates/disciplinas.template.html',
@@ -449,6 +490,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/disciplinas/controllers/disciplinas.controller.js",
                                     "app/disciplinas/services/disciplinas.service.js",
+                                    "app/common/config.js",
+
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
                                 ]
@@ -457,7 +500,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.disciplinas.adicionar', {
-                    url: '/app/disciplinas/adicionar',
+                    url: '/disciplinas/adicionar',
                     controller: 'DisciplinasController',
                     controllerAs: 'disciplinasCtrl',
                     templateUrl: 'app/disciplinas/templates/disciplinas.form.html',
@@ -469,6 +512,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                     "app/disciplinas/controllers/disciplinas.controller.js",
                                     "app/disciplinas/services/disciplinas.service.js",
                                     "app/common/constants.js",
+                                    "app/common/config.js",
+
                                     "app/common/canonico.functions.js"
                                 ]
                             })
@@ -476,7 +521,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.disciplinas.editar', {
-                    url: '/app/disciplinas/editar/:id',
+                    url: '/disciplinas/editar/:id',
                     controller: 'DisciplinasController',
                     controllerAs: 'disciplinasCtrl',
                     templateUrl: 'app/disciplinas/templates/disciplinas.form.html',
@@ -487,6 +532,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/disciplinas/controllers/disciplinas.controller.js",
                                     "app/disciplinas/services/disciplinas.service.js",
+                                    "app/common/config.js",
+
                                     "app/common/constants.js",
                                     "app/common/canonico.functions.js"
                                 ]
@@ -495,7 +542,11 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.concursos', {
-                    url: '/app/concursos',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.concursos.home', {
+                    url: '/concursos',
                     controller: 'ConcursosController',
                     controllerAs: 'concursosCtrl',
                     templateUrl: 'app/concursos/templates/concursos.template.html',
@@ -505,6 +556,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 serie: true,
                                 files: [
                                     "app/concursos/controllers/concursos.controller.js",
+                                    "app/common/config.js",
+
                                     "app/concursos/services/concursos.service.js",
                                     "app/orgaos/services/orgaos.service.js",
                                     "app/bancas/services/bancas.service.js",
@@ -515,8 +568,9 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                         }]
                     }
                 })
+
                 .state('app.concursos.adicionar', {
-                    url: '/app/concursos/adicionar',
+                    url: '/concursos/adicionar',
                     controller: 'ConcursosController',
                     controllerAs: 'concursosCtrl',
                     templateUrl: 'app/concursos/templates/concursos.form.html',
@@ -527,6 +581,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/concursos/controllers/concursos.controller.js",
                                     "app/concursos/services/concursos.service.js",
+                                    "app/common/config.js",
+
                                     "app/orgaos/services/orgaos.service.js",
                                     "app/bancas/services/bancas.service.js",
                                     "app/common/constants.js",
@@ -537,7 +593,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.concursos.editar', {
-                    url: '/app/concursos/editar/:id',
+                    url: '/concursos/editar/:id',
                     controller: 'ConcursosController',
                     controllerAs: 'concursosCtrl',
                     templateUrl: 'app/concursos/templates/concursos.form.html',
@@ -547,6 +603,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 serie: true,
                                 files: [
                                     "app/concursos/controllers/concursos.controller.js",
+                                    "app/common/config.js",
+
                                     "app/concursos/services/concursos.service.js",
                                     "app/orgaos/services/orgaos.service.js",
                                     "app/bancas/services/bancas.service.js",
@@ -558,7 +616,11 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.provas', {
-                    url: '/app/provas',
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.provas.home', {
+                    url: '/provas',
                     controller: 'ProvasController',
                     controllerAs: 'provasCtrl',
                     templateUrl: 'app/provas/templates/provas.template.html',
@@ -569,6 +631,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 files: [
                                     "app/provas/controllers/provas.controller.js",
                                     "app/provas/services/provas.service.js",
+                                    "app/common/config.js",
+
                                     "app/provas/factories/provas.factory.js",
                                     "app/concursos/services/concursos.service.js",
                                     "app/cargos/services/cargos.service.js",
@@ -580,7 +644,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.provas.adicionar', {
-                    url: '/app/provas/adicionar',
+                    url: '/provas/adicionar',
                     controller: 'ProvasController',
                     controllerAs: 'provasCtrl',
                     templateUrl: 'app/provas/templates/provas.form.html',
@@ -590,6 +654,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 serie: true,
                                 files: [
                                     "app/provas/controllers/provas.controller.js",
+                                    "app/common/config.js",
+
                                     "app/provas/services/provas.service.js",
                                     "app/provas/factories/provas.factory.js",
                                     "app/concursos/services/concursos.service.js",
@@ -602,7 +668,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     }
                 })
                 .state('app.provas.editar', {
-                    url: '/app/provas/editar/:id',
+                    url: '/provas/editar/:id',
                     controller: 'ProvasController',
                     controllerAs: 'provasCtrl',
                     templateUrl: 'app/provas/templates/provas.form.html',
@@ -612,6 +678,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                                 serie: true,
                                 files: [
                                     "app/provas/controllers/provas.controller.js",
+                                    "app/common/config.js",
+
                                     "app/provas/services/provas.service.js",
                                     "app/provas/factories/provas.factory.js",
                                     "app/concursos/services/concursos.service.js",
@@ -622,8 +690,85 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                             })
                         }]
                     }
-                }).state('app.dashboard', {
-                url: '/app/dashboard',
+                })
+                .state('app.usuarios', {
+                    url: '',
+                    template : '<ui-view></ui-view>'
+                })
+                .state('app.usuarios.home', {
+                    url: '/usuarios',
+                    controller: 'UsuariosController',
+                    controllerAs: 'usuariosCtrl',
+                    templateUrl: 'app/provas/templates/provas.template.html',
+                    resolve: {
+                        loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                serie: true,
+                                files: [
+                                    "app/provas/controllers/provas.controller.js",
+                                    "app/provas/services/provas.service.js",
+                                    "app/common/config.js",
+
+                                    "app/provas/factories/provas.factory.js",
+                                    "app/concursos/services/concursos.service.js",
+                                    "app/cargos/services/cargos.service.js",
+                                    "app/common/constants.js",
+                                    "app/common/canonico.functions.js"
+                                ]
+                            })
+                        }]
+                    }
+                })
+                .state('app.usuarios.adicionar', {
+                    url: '/usuarios/adicionar',
+                    controller: 'UsuariosController',
+                    controllerAs: 'usuariosCtrl',
+                    templateUrl: 'app/provas/templates/provas.form.html',
+                    resolve: {
+                        loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                serie: true,
+                                files: [
+                                    "app/provas/controllers/provas.controller.js",
+                                    "app/common/config.js",
+
+                                    "app/provas/services/provas.service.js",
+                                    "app/provas/factories/provas.factory.js",
+                                    "app/concursos/services/concursos.service.js",
+                                    "app/cargos/services/cargos.service.js",
+                                    "app/common/constants.js",
+                                    "app/common/canonico.functions.js"
+                                ]
+                            })
+                        }]
+                    }
+                })
+                .state('app.usuarios.editar', {
+                    url: '/usuarios/editar/:id',
+                    controller: 'UsuariosController',
+                    controllerAs: 'usuariosCtrl',
+                    templateUrl: 'app/provas/templates/provas.form.html',
+                    resolve: {
+                        loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                serie: true,
+                                files: [
+                                    "app/provas/controllers/provas.controller.js",
+                                    "app/common/config.js",
+
+                                    "app/provas/services/provas.service.js",
+                                    "app/provas/factories/provas.factory.js",
+                                    "app/concursos/services/concursos.service.js",
+                                    "app/cargos/services/cargos.service.js",
+                                    "app/common/constants.js",
+                                    "app/common/canonico.functions.js"
+                                ]
+                            })
+                        }]
+                    }
+                })
+                .state('app.dashboard', {
+                url: '/dashboard',
                 controller: 'DashboardController',
                 controllerAs: 'dashboardCtrl',
                 templateUrl: 'app/dashboard/templates/dashboard.template.html',
@@ -634,6 +779,8 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                             files: [
                                 "app/dashboard/controllers/dashboard.controller.js",
                                 "app/orgaos/services/orgaos.service.js",
+                                "app/common/config.js",
+
                                 "app/bancas/services/bancas.service.js",
                                 "app/questoes/services/questoes.service.js",
                                 "app/concursos/services/concursos.service.js",
@@ -659,7 +806,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
                     return $state.go(toState.name, toParams);
                 })
                 .catch(function () {
-                    return $state.go('welcome');
+                    return $state.go('app.dashboard');
                 });
         }
     });

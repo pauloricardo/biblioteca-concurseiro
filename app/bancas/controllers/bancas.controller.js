@@ -4,9 +4,9 @@
     angular.module('biblioteca-concurseiro')
         .controller('BancasController', BancasController);
 
-    BancasController.$inject = ['$stateParams', 'BancasDataService'];
+    BancasController.$inject = ['$state', '$stateParams', 'BancasDataService'];
 
-    function BancasController($stateParams, BancasDataService) {
+    function BancasController($state, $stateParams, BancasDataService) {
         var vm = this;
 
         vm.getBanca = getBanca;
@@ -31,7 +31,7 @@
                 })
             }else{
                 BancasDataService.update({
-                    id : $routeParams.id,
+                    id : $stateParams.id,
                     nome : vm.banca.nome
                 }).then(function(result){
                     vm.alerts = {
@@ -67,7 +67,7 @@
 
         function getBanca(){
             if ($stateParams.id !== undefined) {
-                BancasDataService.buscaBancaPorID($routeParams.id).success(function(result){
+                BancasDataService.buscaBancaPorID($stateParams.id).success(function(result){
                     vm.banca = angular.copy(result);
                 });
             }

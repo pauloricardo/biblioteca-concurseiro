@@ -1,43 +1,47 @@
 <div class="row">
     <div class="alerts">
-        <div ng-if="cargosCtrl.alerts.type == 'ERROR'">
+        <div ng-if="provasCtrl.alerts[0].type == 'ERROR'">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                {{cargosCtrl.alerts.message}}
+                {{provasCtrl.alerts[0].message}}
             </div>
         </div>
 
-        <div ng-if="cargosCtrl.alerts.type == 'SUCCESS'">
+        <div ng-if="provasCtrl.alerts[0].type == 'SUCCESS'">
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                {{cargosCtrl.alerts.message}}
+                {{provasCtrl.alerts[0].message}}
             </div>
         </div>
     </div>
     <div class="panel" style="padding:5px;">
         <div class="panel-heading">
-            <h3 class="page-header">Cargos Cadastrados</h3>
-            <a class="btn btn-primary" ui-sref="app.cargos.adicionar">Nova</a>
+            <h3 class="page-header">Provas Cadastradas</h3>
+            <a class="btn btn-primary" href="#/provas/adicionar">Nova</a>
         </div>
         <div class="panel-body">
             <table class="table table-responsive table-striped">
                 <thead>
                 <tr>
                     <th>#ID</th>
+                    <th>Concurso</th>
+                    <th>Cargo</th>
                     <th>Nome</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="cargo in cargosCtrl.cargos track by cargo.id">
-                    <td>{{cargo.id}}</td>
-                    <td>{{cargo.nome}}</td>
+                <tr ng-repeat="prova in provasCtrl.provas.provas track by prova.id">
+                    <td>{{prova.id}}</td>
+                    <td>{{prova.concurso.nome}}</td>
+                    <td>{{prova.cargo.nome}}</td>
+                    <td>{{prova.nome}}</td>
                     <td>
-                        <a href="#/cargos/editar/{{cargo.id}}">
+                        <a href="#/provas/editar/{{prova.id}}">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <a href="javascript:;" ng-click="cargosCtrl.trash(cargo.id)">
+                        <a href="javascript:;" ng-click="provasCtrl.trash(prova.id)">
                             <i class="glyphicon glyphicon-trash"></i>
                         </a>
                     </td>
@@ -47,15 +51,15 @@
         </div>
         <div class="panel-footer">
             <ul uib-pagination
-                ng-model="cargosCtrl.currentPage"
-                total-items="cargosCtrl.totalRows"
-                max-size="cargosCtrl.maxSize"
+                ng-model="provasCtrl.currentPage"
+                total-items="provasCtrl.totalRows"
+                max-size="provasCtrl.maxSize"
                 boundary-links="true"
                 previous-text="&lsaquo;"
                 next-text="&rsaquo;"
                 first-text="&laquo;"
                 last-text="&raquo;"
-                ng-change="cargosCtrl.pageChanged()">
+                ng-change="provasCtrl.pageChanged()">
             </ul>
 
         </div>

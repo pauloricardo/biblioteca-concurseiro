@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <nav class="navbar navbar-default" role="navigation">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#">Biblioteca do concurseiro</a>
+                            <a class="navbar-brand" ui-sref="app.dashboard">Biblioteca do concurseiro</a>
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,36 +51,41 @@
             <div class="row">
                 <div class="col-md-2">
                     <uib-accordion close-others="oneAtATime">
+                        <div uib-accordion-group class="panel-default" heading="Painel" is-disabled="status.isFirstDisabled">
+                            <a class="btn btn-default btn-block" ui-sref="app.dashboard">Visualizar</a>
+                        </div>
                         <div uib-accordion-group class="panel-default" heading="Assuntos" is-disabled="status.isFirstDisabled">
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.assuntos.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Bancas">
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.bancas.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Cargos" >
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.cargos.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Concursos">
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.concursos.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Disciplinas">
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.disciplinas.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Orgãos">
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.orgaos.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Provas">
-                            <a class="btn btn-default btn-block">Visualizar</a>
+                            <a class="btn btn-default btn-block" ui-sref="app.provas.home">Visualizar</a>
                         </div>
                         <div uib-accordion-group class="panel-default" heading="Questões"  is-disabled="status.isFirstDisabled">
                             <a ui-sref="app.questoes.home" class="btn btn-default btn-block">Visualizar</a>
+                        </div>
+                        <div uib-accordion-group class="panel-default" heading="Usuários"  is-disabled="status.isFirstDisabled">
+                            <a ui-sref="app.usuarios.home" class="btn btn-default btn-block">Visualizar</a>
                         </div>
                     </uib-accordion>
                 </div>
 
                 <div class="col-md-10">
                     <div ui-view=""></div>
-                    <div ui-view="questao-form"></div>
                 </div>
                 </div>
             </div>

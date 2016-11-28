@@ -4,10 +4,10 @@
     angular.module('biblioteca-concurseiro')
         .controller('AssuntosController', AssuntosController);
 
-    AssuntosController.$inject = ['$q', '$route', '$routeParams', 'AssuntosDataService', 'AssuntosFactory', 'Canonico',
+    AssuntosController.$inject = ['$q', '$state', '$stateParams', 'AssuntosDataService', 'AssuntosFactory', 'Canonico',
         'DisciplinasDataService', 'CommonConstants'];
 
-    function AssuntosController($q, $route, $routeParams, AssuntosDataService, AssuntosFactory, Canonico,
+    function AssuntosController($q, $state, $stateParams, AssuntosDataService, AssuntosFactory, Canonico,
         DisciplinasDataService, CommonConstants) {
         var vm = this;
 
@@ -22,7 +22,7 @@
         vm.trash = trash;
 
         function create() {
-            if ($routeParams.id == undefined) {
+            if ($stateParams.id == undefined) {
                 var params = AssuntosFactory.convert(vm.assunto);
                 AssuntosDataService.create(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', CommonConstants.MESSAGES.MSG_SUCESSO_ASSUNTO_ADD);
@@ -55,8 +55,8 @@
         }
 
         function getAssunto() {
-            if ($routeParams.id !== undefined) {
-                AssuntosDataService.buscaAssuntoPorID($routeParams.id).success(function (result) {
+            if ($stateParams.id !== undefined) {
+                AssuntosDataService.buscaAssuntoPorID($stateParams.id).success(function (result) {
                     vm.assunto = angular.copy(result);
                 });
             }

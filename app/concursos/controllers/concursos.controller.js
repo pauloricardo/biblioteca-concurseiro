@@ -13,9 +13,9 @@
     angular.module('biblioteca-concurseiro')
         .controller('ConcursosController', ConcursosController);
 
-    ConcursosController.$inject = ['$route', '$routeParams', 'ConcursosDataService', 'OrgaosDataService', 'BancasDataService'];
+    ConcursosController.$inject = ['$state', '$stateParams', 'ConcursosDataService', 'OrgaosDataService', 'BancasDataService'];
 
-    function ConcursosController($route,$routeParams, ConcursosDataService, OrgaosDataService, BancasDataService){
+    function ConcursosController($state,$stateParams, ConcursosDataService, OrgaosDataService, BancasDataService){
         var vm = this;
 
         vm.getConcurso = getConcurso;
@@ -40,8 +40,8 @@
             });
         }
         function getConcurso(){
-            if ($routeParams.id !== undefined) {
-                ConcursosDataService.buscaConcursoPorID($routeParams.id).success(function(result){
+            if ($stateParams.id !== undefined) {
+                ConcursosDataService.buscaConcursoPorID($stateParams.id).success(function(result){
                     vm.concurso = angular.copy(result);
                     console.log(vm.concurso);
                 });
@@ -49,7 +49,7 @@
         }
 
         function create(){
-            if($routeParams.id == undefined){
+            if($stateParams.id == undefined){
                 ConcursosDataService.create({
                     ano : vm.concurso.ano,
                     orgao_id : vm.concurso.orgao_id,
@@ -62,7 +62,7 @@
                 })
             }else{
                 ConcursosDataService.update({
-                    id : $routeParams.id,
+                    id : $stateParams.id,
                     ano : vm.concurso.ano,
                     orgao_id : vm.concurso.orgao_id,
                     banca_id : vm.concurso.banca_id

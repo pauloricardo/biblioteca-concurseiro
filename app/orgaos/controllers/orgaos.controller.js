@@ -13,9 +13,9 @@
     angular.module('biblioteca-concurseiro')
         .controller('OrgaosController', OrgaosController);
 
-    OrgaosController.$inject = ['OrgaosDataService', '$route', '$routeParams'];
+    OrgaosController.$inject = ['OrgaosDataService', '$state', '$stateParams'];
 
-    function OrgaosController(OrgaosDataService, $route, $routeParams){
+    function OrgaosController(OrgaosDataService, $state, $stateParams){
         var vm = this;
 
         vm.getOrgao = getOrgao;
@@ -41,14 +41,14 @@
             });
         }
         function getOrgao(){
-            if ($routeParams.id !== undefined) {
-                OrgaosDataService.buscaOrgaoPorID($routeParams.id).success(function(result){
+            if ($stateParams.id !== undefined) {
+                OrgaosDataService.buscaOrgaoPorID($stateParams.id).success(function(result){
                     vm.orgao = angular.copy(result);
                 });
             }
         }
         function create(){
-            if($routeParams.id == undefined){
+            if($stateParams.id == undefined){
                 OrgaosDataService.create({
                     nome : vm.orgao.nome
                 }).then(function(result){
@@ -59,7 +59,7 @@
                 })
             }else{
                 OrgaosDataService.update({
-                    id : $routeParams.id,
+                    id : $stateParams.id,
                     nome : vm.orgao.nome
                 }).then(function(result){
                     vm.alerts = {

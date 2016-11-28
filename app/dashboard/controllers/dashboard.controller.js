@@ -4,8 +4,8 @@
     angular.module('biblioteca-concurseiro')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$q','$route','$routeParams', 'OrgaosDataService', 'BancasDataService', 'QuestoesDataService', 'ConcursosDataService'];
-    function DashboardController($q,$route, $routeParams,
+    DashboardController.$inject = ['$q','$state','$stateParams', 'OrgaosDataService', 'BancasDataService', 'QuestoesDataService', 'ConcursosDataService'];
+    function DashboardController($q,$state, $stateParams,
                                  OrgaosDataService, BancasDataService, QuestoesDataService, ConcursosDataService){
         var vm = this;
         vm.totalQuestoes = 0;

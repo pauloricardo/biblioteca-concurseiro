@@ -13,9 +13,9 @@
     angular.module('biblioteca-concurseiro')
         .controller('DisciplinasController', DisciplinasController);
 
-    DisciplinasController.$inject = ['$route', '$routeParams', 'DisciplinasDataService'];
+    DisciplinasController.$inject = ['$state', '$stateParams', 'DisciplinasDataService'];
 
-    function DisciplinasController($route,$routeParams, DisciplinasDataService){
+    function DisciplinasController($state,$stateParams, DisciplinasDataService){
         var vm = this;
 
         vm.getDisciplina = getDisciplina;
@@ -40,15 +40,15 @@
             });
         }
         function getDisciplina(){
-            if ($routeParams.id !== undefined) {
-                DisciplinasDataService.buscaDisciplinaPorID($routeParams.id).success(function(result){
+            if ($stateParams.id !== undefined) {
+                DisciplinasDataService.buscaDisciplinaPorID($stateParams.id).success(function(result){
                     vm.disciplina = angular.copy(result);
                 });
             }
         }
 
         function create(){
-          if($routeParams.id == undefined){
+          if($stateParams.id == undefined){
             DisciplinasDataService.create({
               nome : vm.disciplina.nome
             }).then(function(result){
@@ -59,7 +59,7 @@
             })
           }else{
               DisciplinasDataService.update({
-                id : $routeParams.id,
+                id : $stateParams.id,
                 nome : vm.disciplina.nome
               }).then(function(result){
                 vm.alerts = {

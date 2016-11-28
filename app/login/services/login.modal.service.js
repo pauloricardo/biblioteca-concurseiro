@@ -18,7 +18,8 @@ function loginModal($uibModal, $rootScope) {
         var instance = $uibModal.open({
             templateUrl: 'app/login/templates/login.form.template.html',
             controller: 'LoginModalController',
-            controllerAs: 'loginModalCtrl'
+            controllerAs: 'loginModalCtrl',
+            backdrop: 'static'
         });
         return instance.result.then(assignCurrentUser);
     };
