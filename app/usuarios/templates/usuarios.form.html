@@ -1,23 +1,23 @@
-<div class="row" ng-init="provasCtrl.getProva()">
+<div class="row" ng-init="usuariosCtrl.getProva()">
     <div class="col-md-12">
         <div class="alerts">
-            <div ng-if="provasCtrl.alerts[0].type == 'ERROR'">
+            <div ng-if="usuariosCtrl.alerts[0].type == 'ERROR'">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    {{provasCtrl.alerts[0].message}}
+                    {{usuariosCtrl.alerts[0].message}}
                 </div>
             </div>
 
-            <div ng-if="provasCtrl.alerts[0].type == 'SUCCESS'">
+            <div ng-if="usuariosCtrl.alerts[0].type == 'SUCCESS'">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    {{provasCtrl.alerts[0].message}}
+                    {{usuariosCtrl.alerts[0].message}}
                 </div>
             </div>
         </div>
-        <h4 class="page-header">Cadastrar Prova</h4>
+        <h4 class="page-header">Cadastrar Usuário</h4>
         <form class="form" role="form">
             <div class="form-group">
                 <div class="col-md-4">
@@ -25,37 +25,31 @@
                     <input type="text"
                            name="nome"
                            id="nome"
-                           ng-model="provasCtrl.prova.nome"
+                           ng-model="usuariosCtrl.usuario.nome"
                            class="form-control">
                 </div>
                 <div class="col-md-4">
-                    <label for="nome">Concurso</label>
-                    <select
-                            name="nome"
-                            id="nome"
-                            ng-options="item.id as item.orgao.nome + '/' + item.ano for item in provasCtrl.concursos.concursos"
-                            ng-model="provasCtrl.prova.concurso_id"
-                            class="form-control">
-                        <option value="">Selecione.</option>
-                    </select>
+                    <label for="nome">E-mail</label>
+                    <input type="text"
+                           name="nome"
+                           id="nome"
+                           ng-model="usuariosCtrl.usuario.email"
+                           class="form-control">
                 </div>
                 <div class="col-md-4">
                     <label for="nome">Cargo</label>
-                    <select
-                            name="nome"
-                            id="nome"
-                            ng-options="item.id as item.nome for item in provasCtrl.cargos.cargos"
-                            ng-model="provasCtrl.prova.cargo_id"
-                            class="form-control">
-                        <option value="">Selecione.</option>
-                    </select>
+                    <input type="password"
+                           name="nome"
+                           id="nome"
+                           ng-model="usuariosCtrl.usuario.password"
+                           class="form-control">
                 </div>
             </div>
             <br>
             <div class="text-center" style="margin-top:20px; margin-bottom:20px; padding:20px;">
                 <hr>
-                <a href="#/provas" class="btn btn-default">Voltar</a>
-                <button class="btn btn-primary" ng-click="provasCtrl.create()">Salvar</button>
+                <a ui-sref="app.usuarios.home" class="btn btn-default">Voltar</a>
+                <button class="btn btn-primary" ng-click="usuariosCtrl.create()">Salvar</button>
             </div>
         </form>
     </div>

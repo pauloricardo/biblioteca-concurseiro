@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('biblioteca-concurseiro')
-        .controller('ProvasController', ProvasController);
+        .controller('UsuariosController', UsuariosController);
 
-    ProvasController.$inject = ['$q', '$state', '$stateParams', 'ProvasDataService', 'ProvasFactory', 'Canonico', 'ConcursosDataService', 'CargosDataService', 'CommonConstants'];
+    UsuariosController.$inject = ['$q', '$state', '$stateParams', 'UsuariosDataService', 'UsuariosFactory', 'Canonico', 'ConcursosDataService', 'CargosDataService', 'CommonConstants'];
 
-    function ProvasController($q, $state, $stateParams, ProvasDataService, ProvasFactory, Canonico, ConcursosDataService, CargosDataService,CommonConstants) {
+    function UsuariosController($q, $state, $stateParams, UsuariosDataService, UsuariosFactory, Canonico, ConcursosDataService, CargosDataService,CommonConstants) {
         var vm = this;
 
         vm.getProva = getProva;
@@ -21,20 +21,20 @@
 
         function create() {
             if ($stateParams.id == undefined) {
-                var params = ProvasFactory.convert(vm.prova);
-                ProvasDataService.create(params).then(function (result) {
+                var params = UsuariosFactory.convert(vm.usuario);
+                UsuariosDataService.create(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', CommonConstants.MESSAGES.MSG_SUCESSO_PROVA_ADD);
                 });
             } else {
-                var params = ProvasFactory.convert(vm.prova);
-                ProvasDataService.update(params).then(function (result) {
+                var params = UsuariosFactory.convert(vm.usuario);
+                UsuariosDataService.update(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', CommonConstants.MESSAGES.MSG_SUCESSO_PROVA_EDIT);
                 });
             }
         }
 
         function trash(id) {
-            ProvasDataService.trash(id)
+            UsuariosDataService.trash(id)
                 .then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', CommonConstants.MESSAGES.MSG_SUCESSO_PROVA_DELETE);
                     activate();
@@ -47,15 +47,15 @@
                 'skip': inicio,
                 'top': 10
             };
-            ProvasDataService.getProvas(params).then(function (result) {
-                vm.provas = angular.copy(result.data);
+            UsuariosDataService.getUsuarios(params).then(function (result) {
+                vm.usuarios = angular.copy(result.data);
             });
         }
 
-        function getProva() {
+        function getUsuario() {
             if ($stateParams.id !== undefined) {
-                ProvasDataService.buscaProvaPorID($stateParams.id).success(function (result) {
-                    vm.prova = angular.copy(result);
+                UsuariosDataService.buscaUsuarioPorID($stateParams.id).success(function (result) {
+                    vm.usuario = angular.copy(result);
                 });
             }
         }
@@ -66,27 +66,16 @@
                 'top': 10
             };
             $q.all([
-                ProvasDataService.getProvas(params).then(function (result) {
-                    return result.data;
-                }),
-                ConcursosDataService.getConcursos().then(function (result) {
-                    return result.data;
-                }),
-                CargosDataService.getCargos().then(function (result) {
+                UsuariosDataService.getUsuarios(params).then(function (result) {
                     return result.data;
                 })
             ]).then(function (result) {
                 if (result[0] && result[1] && result[2]) {
                     vm.totalRows = angular.copy(result[0]['X-Total-Rows']);
-                    vm.provas = result[0];
-                    vm.concursos = result[1];
-                    vm.cargos = result[2];
+                    vm.usuarios = result[0];
                 }
             })
         }
-
         activate();
-
-
     }
 })();

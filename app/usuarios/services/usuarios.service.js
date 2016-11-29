@@ -3,10 +3,10 @@
  */
 angular
     .module('biblioteca-concurseiro')
-    .service('ProvasDataService', ProvasDataService);
+    .service('UsuariosDataService', UsuariosDataService);
 
-ProvasDataService.$inject = ['$http', '$q', 'CommonConfig'];
-function ProvasDataService($http, $q, CommonConfig) {
+UsuariosDataService.$inject = ['$http', '$q', 'CommonConfig'];
+function UsuariosDataService($http, $q, CommonConfig) {
     var vm = this;
     var _headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -14,64 +14,60 @@ function ProvasDataService($http, $q, CommonConfig) {
     };
 
     var exports = {
-        'getProvas': getProvas,
-        'buscaProvaPorID' : buscaProvaPorID,
+        'getUsuarios': getUsuarios,
+        'buscaUsuarioPorID' : buscaUsuarioPorID,
         'create' : create,
         'update' : update,
         'trash' : trash
     };
     return exports;
 
-    function getProvas(params) {
+    function getUsuarios(params) {
         if(params){
             return $http({
                 method : 'GET',
-                url : CommonConfig.getBaseUrl() + '/provas/'+params['skip']+'/'+params['top'],
+                url : CommonConfig.getBaseUrl() + '/usuarios/'+params['skip']+'/'+params['top'],
                 headers : _headers
             });
-
         }else{
-
             return $http({
                 method : 'GET',
-                url : CommonConfig.getBaseUrl() + '/provas',
+                url : CommonConfig.getBaseUrl() + '/usuarios',
                 headers : _headers
             });
         }
     }
 
-    function create(banca){
+    function create(usuario){
         return $http({
             method : 'POST',
-            url : CommonConfig.getBaseUrl() + '/provas',
+            url : CommonConfig.getBaseUrl() + '/usuarios',
             headers : _headers,
-            data : banca
+            data : usuario
         });
     }
 
     function update(data){
         return $http({
             method : 'POST',
-            url : CommonConfig.getBaseUrl() + '/provas/'+data['id'],
+            url : CommonConfig.getBaseUrl() + '/usuarios/'+data['id'],
             headers : _headers,
             data : data
         });
     }
 
     function trash(id){
-        console.log(id);
         return $http({
             method : 'GET',
-            url : CommonConfig.getBaseUrl() + '/provas/fn/trash/'+id,
+            url : CommonConfig.getBaseUrl() + '/usuarios/fn/trash/'+id,
             headers : _headers
         });
     }
 
-    function buscaProvaPorID(id){
-
+    function buscaUsuarioPorID(id){
         return $http({
             method : 'GET',
-            url : CommonConfig.getBaseUrl() + '/provas/'+id,
+            url : CommonConfig.getBaseUrl() + '/usuarios/'+id,
             headers : _headers
         });
 

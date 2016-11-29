@@ -7,12 +7,11 @@
  *
  * */
 angular.module('biblioteca-concurseiro')
-    .factory('ProvasFactory', ProvasFactory);
+    .factory('UsuariosFactory', ProvasUsuariosFactoryFactory);
 
-ProvasFactory.$inject = ['CommonConstants'];
+UsuariosFactory.$inject = ['CommonConstants'];
 
-function ProvasFactory(CommonConstants) {
-
+function UsuariosFactory(CommonConstants) {
     return {
         'convert' : convert,
         'convertList' : convertList
@@ -23,14 +22,14 @@ function ProvasFactory(CommonConstants) {
 
         if(item){
             converted.id = item.id;
-            converted.concurso_id = item.concurso_id;
-            converted.cargo_id = item.cargo_id;
+            converted.email = item.concurso_id;
             converted.nome = item.nome;
+            converted.password = item.cargo_id;
         }else{
             converted.id = null;
-            converted.concurso_id = null;
-            converted.cargo_id = null;
+            converted.email = null;
             converted.nome = null;
+            converted.password = null;
         }
         return converted;
     }
