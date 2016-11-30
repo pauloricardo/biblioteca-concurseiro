@@ -31,9 +31,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="usuario in usuariosCtrl.usuarios.usuarios track by usuario.id">
+                <tr ng-repeat="usuario in usuariosCtrl.usuarios">
                     <td>{{usuario.id}}</td>
-                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.name}}</td>
                     <td>{{usuario.email}}</td>
                     <td>
                         <a href="#/usuarios/editar/{{prova.id}}">

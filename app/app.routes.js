@@ -621,18 +621,16 @@ angular.module('biblioteca-concurseiro')
           url: '/usuarios',
           controller: 'UsuariosController',
           controllerAs: 'usuariosCtrl',
-          templateUrl: 'app/provas/templates/provas.template.html',
+          templateUrl: 'app/usuarios/templates/usuarios.template.html',
           resolve: {
             loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
               return $ocLazyLoad.load({
                 serie: true,
                 files: [
-                  "app/provas/controllers/provas.controller.js",
-                  "app/provas/services/provas.service.js",
+                  "app/usuarios/controllers/usuarios.controller.js",
+                  "app/usuarios/services/usuarios.service.js",
                   "app/common/config.js",
-                  "app/provas/factories/provas.factory.js",
-                  "app/concursos/services/concursos.service.js",
-                  "app/cargos/services/cargos.service.js",
+                  "app/usuarios/factories/usuarios.factory.js",
                   "app/common/constants.js",
                   "app/common/canonico.functions.js"
                 ]
@@ -644,18 +642,16 @@ angular.module('biblioteca-concurseiro')
           url: '/usuarios/adicionar',
           controller: 'UsuariosController',
           controllerAs: 'usuariosCtrl',
-          templateUrl: 'app/provas/templates/provas.form.html',
+          templateUrl: 'app/usuarios/templates/usuarios.form.html',
           resolve: {
             loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
               return $ocLazyLoad.load({
                 serie: true,
                 files: [
-                  "app/provas/controllers/provas.controller.js",
+                  "app/usuarios/controllers/usuarios.controller.js",
+                  "app/usuarios/services/usuarios.service.js",
                   "app/common/config.js",
-                  "app/provas/services/provas.service.js",
-                  "app/provas/factories/provas.factory.js",
-                  "app/concursos/services/concursos.service.js",
-                  "app/cargos/services/cargos.service.js",
+                  "app/usuarios/factories/usuarios.factory.js",
                   "app/common/constants.js",
                   "app/common/canonico.functions.js"
                 ]
@@ -667,18 +663,16 @@ angular.module('biblioteca-concurseiro')
           url: '/usuarios/editar/:id',
           controller: 'UsuariosController',
           controllerAs: 'usuariosCtrl',
-          templateUrl: 'app/provas/templates/provas.form.html',
+          templateUrl: 'app/usuarios/templates/usuarios.form.html',
           resolve: {
             loadDeps: ['$ocLazyLoad', function ($ocLazyLoad) {
               return $ocLazyLoad.load({
                 serie: true,
                 files: [
-                  "app/provas/controllers/provas.controller.js",
+                  "app/usuarios/controllers/usuarios.controller.js",
+                  "app/usuarios/services/usuarios.service.js",
                   "app/common/config.js",
-                  "app/provas/services/provas.service.js",
-                  "app/provas/factories/provas.factory.js",
-                  "app/concursos/services/concursos.service.js",
-                  "app/cargos/services/cargos.service.js",
+                  "app/usuarios/factories/usuarios.factory.js",
                   "app/common/constants.js",
                   "app/common/canonico.functions.js"
                 ]

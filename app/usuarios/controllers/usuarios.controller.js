@@ -4,12 +4,12 @@
     angular.module('biblioteca-concurseiro')
         .controller('UsuariosController', UsuariosController);
 
-    UsuariosController.$inject = ['$q', '$state', '$stateParams', 'UsuariosDataService', 'UsuariosFactory', 'Canonico', 'ConcursosDataService', 'CargosDataService', 'CommonConstants'];
+    UsuariosController.$inject = ['$q', '$state', '$stateParams', 'UsuariosDataService', 'UsuariosFactory', 'Canonico', 'CommonConstants'];
 
-    function UsuariosController($q, $state, $stateParams, UsuariosDataService, UsuariosFactory, Canonico, ConcursosDataService, CargosDataService,CommonConstants) {
+    function UsuariosController($q, $state, $stateParams, UsuariosDataService, UsuariosFactory, Canonico,CommonConstants) {
         var vm = this;
 
-        vm.getProva = getProva;
+        vm.getUsuario = getUsuario;
         vm.alerts = [];
         vm.currentPage = 1;
         vm.maxSize = 10;
@@ -70,9 +70,9 @@
                     return result.data;
                 })
             ]).then(function (result) {
-                if (result[0] && result[1] && result[2]) {
+                if (result[0]) {
                     vm.totalRows = angular.copy(result[0]['X-Total-Rows']);
-                    vm.usuarios = result[0];
+                    vm.usuarios = result[0]['usuarios'];
                 }
             })
         }

@@ -7,7 +7,7 @@
  *
  * */
 angular.module('biblioteca-concurseiro')
-    .factory('UsuariosFactory', ProvasUsuariosFactoryFactory);
+    .factory('UsuariosFactory', UsuariosFactory);
 
 UsuariosFactory.$inject = ['CommonConstants'];
 
@@ -22,9 +22,9 @@ function UsuariosFactory(CommonConstants) {
 
         if(item){
             converted.id = item.id;
-            converted.email = item.concurso_id;
-            converted.nome = item.nome;
-            converted.password = item.cargo_id;
+            converted.email = item.email;
+            converted.name = item.name;
+            converted.password = item.password;
         }else{
             converted.id = null;
             converted.email = null;

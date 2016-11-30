@@ -1,4 +1,4 @@
-<div class="row" ng-init="usuariosCtrl.getProva()">
+<div class="row" ng-init="usuariosCtrl.getUsuario()">
     <div class="col-md-12">
         <div class="alerts">
             <div ng-if="usuariosCtrl.alerts[0].type == 'ERROR'">
@@ -25,7 +25,7 @@
                     <input type="text"
                            name="nome"
                            id="nome"
-                           ng-model="usuariosCtrl.usuario.nome"
+                           ng-model="usuariosCtrl.usuario.name"
                            class="form-control">
                 </div>
                 <div class="col-md-4">
@@ -37,7 +37,7 @@
                            class="form-control">
                 </div>
                 <div class="col-md-4">
-                    <label for="nome">Cargo</label>
+                    <label for="nome">Senha</label>
                     <input type="password"
                            name="nome"
                            id="nome"
