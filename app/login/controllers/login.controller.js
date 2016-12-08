@@ -25,8 +25,8 @@
         'email' : email,
         'password' : password
       };
-      UserService.login(params).then(function () {
-        $uibModalInstance.close('token');
+      UserService.login(params).then(function (retorno) {
+        $uibModalInstance.close(retorno);
       });
     };
     function activate(){

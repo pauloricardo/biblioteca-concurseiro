@@ -41,6 +41,10 @@ function AuthInterceptor(AuthService,$timeout, $q, $injector) {
         responseError: function (rejection) {
             if (rejection.status !== 401) {
                 return rejection;
+            }else{
+                if(rejection.status === 401){
+                    return AuthService.attemptRefreshToken(rejection.config);
+                }
             }
 
             var deferred = $q.defer();

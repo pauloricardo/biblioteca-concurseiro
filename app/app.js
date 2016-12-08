@@ -16,7 +16,7 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
   return function (htmlCode) {
     return $sce.trustAsHtml(htmlCode);
   }
-}]).run(function ($rootScope, $state, loginModal) {
+}]).run(function ($rootScope, $state,jwtHelper, loginModal, AuthService) {
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
     if (requireLogin && typeof $rootScope.token === 'undefined') {
@@ -28,6 +28,9 @@ angular.module('biblioteca-concurseiro', ['ui.router', 'ui.tinymce', 'ui.bootstr
         .catch(function () {
           return $state.go('app.dashboard');
         });
+    }
+    if(requireLogin && $rootScope.token && jwtHelper.isTokenExpired($rootScope.token.data.token)){
+      AuthService.attemptRefreshToken();
     }
   });
 });
