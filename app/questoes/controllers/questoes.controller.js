@@ -144,7 +144,6 @@
                 });
                 QuestoesDataService.update(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Atualizada com sucesso!');
-                    vm.alerts = vm.alerts[0];
                 })
             }
         }

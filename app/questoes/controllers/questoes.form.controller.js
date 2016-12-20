@@ -113,6 +113,7 @@
             if ($stateParams.id == undefined) {
                 QuestoesDataService.create(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Cadastrada com sucesso!');
+                    vm.alerts = vm.alerts[0];
                 })
             } else {
                 params.id = 400;
