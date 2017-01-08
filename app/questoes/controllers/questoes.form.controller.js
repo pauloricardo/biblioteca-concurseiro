@@ -27,6 +27,7 @@
         vm.totalRows = 0;
         vm.questao = {};
         vm.imageFile = "";
+        vm.isFormSubmitted = false;
 
         vm.getQuestao = getQuestao;
         vm.create = create;
@@ -72,7 +73,7 @@
 
         function getQuestao() {
             if ($stateParams.id !== undefined) {
-                QuestoesDataService.buscaQuestaoPorID(400).success(function (result) {
+                QuestoesDataService.buscaQuestaoPorID($stateParams.id).success(function (result) {
                     vm.questao = angular.copy(QuestoesFactory.convert(result));
                 });
             }
@@ -109,11 +110,13 @@
                 tipo_questao : vm.questao.tipo_questao,
                 questoesresposta: vm.questao.respostas
             };
-
-            if ($stateParams.id == undefined) {
+            var isInvalid = vm.form.$invalid && _validateAnswers();
+            vm.isFormSubmitted = true;
+            if(isInvalid){
+                Canonico.addAlert(vm.alerts, 'alert-danger', 'Não foi possível salvar. Verifique os campos e tente novamente.');
+            }else if ($stateParams.id == undefined) {
                 QuestoesDataService.create(params).then(function (result) {
-                    Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Cadastrada com sucesso!');
-                    vm.alerts = vm.alerts[0];
+                    Canonico.addAlert(vm.alerts, 'alert-success', 'Questão Cadastrada com sucesso!');
                 })
             } else {
                 params.id = 400;
@@ -124,7 +127,6 @@
                 });
                 QuestoesDataService.update(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Atualizada com sucesso!');
-                    vm.alerts = vm.alerts[0];
                 })
             }
         }
@@ -133,8 +135,6 @@
             QuestoesDataService.trash(id)
                 .then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão deletada com sucesso!');
-                    vm.alerts = vm.alerts[0];
-
                     activate();
                 })
         }
@@ -164,6 +164,15 @@
             ProvasDataService.getProvas().then(function (result) {
                 vm.provas = angular.copy(result.data);
             });
+        }
+        function _validateAnswers(){
+            var retorno = false;
+            angular.forEach(vm.questao.respostas, function(value){
+                if(value.enunciado === ""){
+                    retorno = true;
+                }
+            });
+            return retorno;
         }
         activate();
 

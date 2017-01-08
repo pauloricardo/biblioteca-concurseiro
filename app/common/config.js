@@ -2,7 +2,7 @@ CommonConfig.$inject = ['$http', '$q', '$window'];
 function CommonConfig($http, $q, $window) {
     var vm = this;
     vm.config = {
-        "host" : "http://biblioteca-concurseiro:8000/",
+        "host" : "http://www.bibliotecadoconcurseiro.com.br/api-questoes/public/",
         "apiContext" : "api/",
         "version" : "v1"
     };

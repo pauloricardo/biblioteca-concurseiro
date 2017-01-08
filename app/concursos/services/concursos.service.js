@@ -32,7 +32,7 @@ function ConcursosDataService($http, $q, CommonConfig) {
         } else {
             return $http({
                 method: 'GET',
-                url: CommonConfig.getBaseUrl() + '/concursos/',
+                url: CommonConfig.getBaseUrl() + '/concursos',
                 headers: _headers
             });
         }

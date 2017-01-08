@@ -130,8 +130,10 @@
                 tipo_questao : vm.questao.tipo_questao,
                 questoesresposta: vm.questao.respostas
             };
-
-            if ($stateParams.id == undefined) {
+            var isInvalid = vm.questoesForm.$invalid && _validateAnswers();
+            if(isInvalid){
+                Canonico.addAlert(vm.alerts, 'ERROR', 'Não foi possível salvar. Verifique os campos e tente novamente.');
+            }else if ($stateParams.id == undefined) {
                 QuestoesDataService.create(params).then(function (result) {
                     Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Cadastrada com sucesso!');
                 })
@@ -210,7 +212,15 @@
         function cleanSearch(){
             buscarQuestoes();
         }
-
+        function _validateAnswers(){
+            var retorno = false;
+            angular.forEach(vm.questao.respostas, function(value){
+               if(value.enunciado === ""){
+                    retorno = true;
+               }
+            });
+            return retorno;
+        }
 
         activate();
 

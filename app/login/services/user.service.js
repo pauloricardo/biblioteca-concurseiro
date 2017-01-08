@@ -5,8 +5,8 @@ angular
     .module('biblioteca-concurseiro')
     .service('UserService', UserService);
 
-UserService.$inject = ['$http', '$q'];
-function UserService($http, $q) {
+UserService.$inject = ['$http', '$q', 'CommonConfig'];
+function UserService($http, $q, CommonConfig) {
 
 
     var _headers = {
@@ -30,7 +30,7 @@ function UserService($http, $q) {
         });
     }
     function login(data){
-        return $http.post('http://biblioteca-concurseiro:8000/auth/login', data, {
+        return $http.post(CommonConfig.getHost() + "auth/login", data, {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             transformRequest: function(obj) {
                 var str = [];

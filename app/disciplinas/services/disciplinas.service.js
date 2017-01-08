@@ -31,7 +31,7 @@ function DisciplinasDataService($http, $q, CommonConfig) {
         }else{
             return $http({
                 method : 'GET',
-                url :  CommonConfig.getBaseUrl() + '/disciplinas/',
+                url :  CommonConfig.getBaseUrl() + '/disciplinas',
                 headers : _headers
             });
 

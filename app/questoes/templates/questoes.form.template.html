@@ -1,109 +1,146 @@
 <div class="row" ng-init="questoesFormCtrl.getQuestao()">
     <div class="col-md-12">
-        <div class="alerts">
-            <div ng-if="questoesFormCtrl.alerts.type == 'ERROR'">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    {{questoesFormCtrl.alerts.message}}
-                </div>
-            </div>
-            <div ng-if="questoesFormCtrl.alerts.type == 'SUCCESS'">
-                <div class="alert alert-success" role="alert">
-                    {{questoesFormCtrl.alerts.message}}
-                </div>
+        <div class="alerts" ng-repeat="alert in questoesFormCtrl.alerts">
+            <div class="alert {{alert.type}} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{alert.message}}
             </div>
         </div>
         <h3 class="page-header">Cadastrar questão</h3>
-        <form class="form" role="form">
-            <div class="form-group">
+        <form id="my_form" action="/upload/"
+              target="form_target" method="post" enctype="multipart/form-data">
+            <input type="file" name="imageFile" id="imageFile"
+                   file-model="questoesFormCtrl.imageFile" style="display:none;"/>
+        </form>
+        <form class="form" name="questoesFormCtrl.form" novalidate>
+            <div class="form-group"
+                 ng-class="{'has-error': questoesFormCtrl.form.descricao.$invalid && questoesFormCtrl.isFormSubmitted}">
                 <label for="descricao">Descrição</label>
                 <textarea name="descricao"
                           id="descricao"
                           ui-tinymce="questoesFormCtrl.tinymceOptions"
-                          ng-model="questoesFormCtrl.questao.texto"></textarea>
+                          ng-model="questoesFormCtrl.questao.texto"
+                          required></textarea>
+                <p ng-show="questoesFormCtrl.form.descricao.$invalid && questoesFormCtrl.isFormSubmitted"
+                   class="help-block">Descrição não pode estar vazia.</p>
+
             </div>
-            <form id="my_form" action="/upload/"
-                  target="form_target" method="post" enctype="multipart/form-data">
-                <input type="file" name="imageFile" id="imageFile"
-                       file-model="questoesFormCtrl.imageFile" style="display:none;"/>
-            </form>
             <div class="form-group">
-                <label for="descricao">Texto Auxiliar</label>
-                <textarea name="descricao"
-                          id="descricao"
+                <label for="textoauxiliar">Texto Auxiliar</label>
+                <textarea name="textoauxiliar"
+                          id="textoauxiliar"
                           ui-tinymce="questoesFormCtrl.tinymceOptions"
                           ng-model="questoesFormCtrl.questao.texto_auxiliar"></textarea>
             </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.disciplina.$invalid && questoesFormCtrl.isFormSubmitted}">
                         <label for="disciplina">
                             Disciplina
                         </label>
-                        <select name="disciplina" id="disciplina" ng-model="questoesFormCtrl.questao.disciplina_id"
+                        <select name="disciplina" id="disciplina"
+                                ng-model="questoesFormCtrl.questao.disciplina_id"
                                 class="form-control"
-                                ng-options="item.id as item.nome for item in questoesFormCtrl.disciplinas">
-                            <option value="">Selecione uma disciplina..</option>
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.disciplinas"
+                                required>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.concurso.$invalid && questoesFormCtrl.isFormSubmitted}">
                         <label for="concurso">
                             Concurso
                         </label>
-                        <select name=""
+                        <select name="concurso"
                                 id="concurso"
                                 ng-model="questoesFormCtrl.questao.concurso_id"
                                 class="form-control"
-                                ng-options="item.id as (item.orgaos.nome + ' / ' + item.ano) for item in questoesFormCtrl.concursos">
-                            <option value="">Concurso</option>
+                                ng-options="item.id as (item.orgao.nome + ' / ' + item.ano) for item in questoesFormCtrl.concursos"
+                                required>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <label for="concurso">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.cargo.$invalid && questoesFormCtrl.isFormSubmitted}">
+                        <label for="cargo">
                             Cargo
                         </label>
-                        <select name=""
-                                id="concurso"
+                        <select name="cargo"
+                                id="cargo"
                                 ng-model="questoesFormCtrl.questao.cargo_id"
                                 class="form-control"
-                                ng-options="item.id as item.nome for item in questoesFormCtrl.cargos">
-                            <option value="">Cargo</option>
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.cargos"
+                                required>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.multiplaescolha.$invalid && questoesFormCtrl.isFormSubmitted}">
                         <label for="multipla_escolha">
                             Múltipla Escolha
                         </label>
-                        <select ng-model="questoesFormCtrl.questao.multipla_escolha" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesFormCtrl.multiplaEscolhaList">
-                            <option value="">Múltipla Escolha</option>
+                        <select ng-model="questoesFormCtrl.questao.multipla_escolha"
+                                id="multipla_escolha"
+                                class="form-control"
+                                name="multiplaescolha"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.multiplaEscolhaList"
+                                required>
+                            <option value="">Selecione</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.nivel.$invalid && questoesFormCtrl.isFormSubmitted}">
                         <label for="nivel">
                             Nível
                         </label>
-                        <select ng-model="questoesFormCtrl.questao.tipo_questao" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesFormCtrl.tipoQuestaoList">
+                        <select ng-model="questoesFormCtrl.questao.tipo_questao"
+                                class="form-control"
+                                name="nivel"
+                                id="nivel"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.tipoQuestaoList"
+                                required>
                             <option value="">Nível</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <label for="nivel">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.assunto.$invalid && questoesFormCtrl.isFormSubmitted}">
+                        <label for="assunto">
                             Assunto
                         </label>
-                        <select ng-model="questoesFormCtrl.questao.assunto_id" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesFormCtrl.assuntos.assuntos">
+                        <select name="assunto"
+                                id="assunto"
+                                ng-model="questoesFormCtrl.questao.assunto_id"
+                                class="form-control"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.assuntos.assuntos"
+                                required>
                             <option value="">Nível</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <label for="nivel">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group"
+                         ng-class="{'has-error': questoesFormCtrl.form.prova.$invalid && questoesFormCtrl.isFormSubmitted}">
+                        <label for="prova">
                             Prova
                         </label>
-                        <select ng-model="questoesFormCtrl.questao.prova_id" class="form-control"
-                                ng-options="item.id as item.nome for item in questoesFormCtrl.provas.provas">
+                        <select ng-model="questoesFormCtrl.questao.prova_id"
+                                name="prova"
+                                id="prova"
+                                class="form-control"
+                                ng-options="item.id as item.nome for item in questoesFormCtrl.provas.provas"
+                                required>
                             <option value="">Nível</option>
                         </select>
                     </div>
