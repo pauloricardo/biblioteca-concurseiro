@@ -96,6 +96,7 @@ angular.module('biblioteca-concurseiro')
                   "app/concursos/services/concursos.service.js",
                   "app/questoes/services/questoes.service.js",
                   "app/questoes/factory/questoes.factory.js",
+                  "app/questoes/factory/questoesresposta.factory.js",
                   "app/common/config.js",
                   "app/cargos/services/cargos.service.js",
                   "app/disciplinas/services/disciplinas.service.js",
@@ -103,6 +104,7 @@ angular.module('biblioteca-concurseiro')
                   "app/provas/services/provas.service.js",
                   "app/common/constants.js",
                   "app/common/canonico.functions.js",
+                  "app/common/config.js",
                   "app/questoes/directives/fileModel.js",
                   "bower_components/angular-file-upload/dist/angular-file-upload.js"
                 ]
