@@ -13,12 +13,12 @@
     angular.module('biblioteca-concurseiro')
         .controller('QuestoesFormController', QuestoesFormController);
 
-    QuestoesFormController.$inject = ['$scope','$state', '$stateParams', 'QuestoesDataService', 'ConcursosDataService'
+    QuestoesFormController.$inject = ['$scope', '$state', '$stateParams', 'QuestoesDataService', 'ConcursosDataService'
         , 'DisciplinasDataService', 'CargosDataService', '$http', 'FileUploader', 'QuestoesFactory', 'CommonConstants', 'Canonico',
-    'AssuntosDataService', 'ProvasDataService'];
+        'AssuntosDataService', 'ProvasDataService', 'QuestoesRespostaFactory', 'CommonConfig'];
 
-    function QuestoesFormController($scope,$state,$stateParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService,
-                                $http, FileUploader, QuestoesFactory, CommonConstants, Canonico, AssuntosDataService, ProvasDataService) {
+    function QuestoesFormController($scope, $state, $stateParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService,
+                                    $http, FileUploader, QuestoesFactory, CommonConstants, Canonico, AssuntosDataService, ProvasDataService, QuestoesRespostaFactory, CommonConfig) {
         var vm = this;
 
         vm.alerts = [];
@@ -49,10 +49,10 @@
                     $('#imageFile').trigger('click');
                     $('#imageFile').on('change', function () {
                         var file = this.files[0];
-                        uploadImage(file).then(function(result){
+                        uploadImage(file).then(function (result) {
                             var reader = new FileReader();
                             reader.onload = function (e) {
-                                callback('http://biblioteca-concurseiro:8000/' + result.data.imagem, {
+                                callback(CommonConfig.getBaseUrl() + result.data.imagem, {
                                     alt: ''
                                 });
                             };
@@ -65,7 +65,7 @@
         function uploadImage(file) {
             var fd = new FormData();
             fd.append('file', vm.imageFile);
-           return $http.post("http://biblioteca-concurseiro:8000/api/v1/questoes/uploadQuestaoFile", fd, {
+            return $http.post("http://biblioteca-concurseiro:8000/api/v1/questoes/uploadQuestaoFile", fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             });
@@ -73,8 +73,8 @@
 
         function getQuestao() {
             if ($stateParams.id !== undefined) {
-                QuestoesDataService.buscaQuestaoPorID($stateParams.id).success(function (result) {
-                    vm.questao = angular.copy(QuestoesFactory.convert(result));
+                QuestoesDataService.buscaQuestaoPorID($stateParams.id).then(function (result) {
+                    vm.questao = angular.copy(QuestoesFactory.convert(result.data));
                 });
             }
         }
@@ -84,18 +84,19 @@
                 enunciado: "",
                 correta: false
             };
-
             vm.questao.respostas.push(params);
         }
 
         function removerResposta(index) {
             vm.questao.respostas.splice(index, 1);
         }
-        function adicionar(){
+
+        function adicionar() {
             $state.go('app.questoes.adicionar', {}, {
-                reload:true
+                reload: true
             });
         }
+
         function create() {
 
             var params = {
@@ -106,35 +107,35 @@
                 cargo_id: vm.questao.cargo_id,
                 assunto_id: vm.questao.assunto_id,
                 prova_id: vm.questao.prova_id,
-                multipla_escolha : vm.questao.multipla_escolha,
-                tipo_questao : vm.questao.tipo_questao,
+                multipla_escolha: vm.questao.multipla_escolha,
+                tipo_questao: vm.questao.tipo_questao,
                 questoesresposta: vm.questao.respostas
             };
             var isInvalid = vm.form.$invalid && _validateAnswers();
             vm.isFormSubmitted = true;
-            if(isInvalid){
-                Canonico.addAlert(vm.alerts, 'alert-danger', 'Não foi possível salvar. Verifique os campos e tente novamente.');
-            }else if ($stateParams.id == undefined) {
+            if (isInvalid) {
+                Canonico.addAlert(vm.alerts, 'alert-danger', CommonConstants.MESSAGES.MSG_FAIL);
+            } else if ($stateParams.id == undefined) {
                 QuestoesDataService.create(params).then(function (result) {
-                    Canonico.addAlert(vm.alerts, 'alert-success', 'Questão Cadastrada com sucesso!');
-                })
+                    Canonico.addAlert(vm.alerts, 'alert-success', CommonConstants.MESSAGES.MSG_SUCESSO_QUESTAO_ADD);
+                });
             } else {
-                params.id = 400;
+                params.id = $stateParams.id;
                 angular.forEach(params.questoesresposta, function (value, key) {
                     if (!params.questoesresposta[key].questao_id) {
                         params.questoesresposta[key].questao_id = parseInt($routeParams.id);
                     }
                 });
                 QuestoesDataService.update(params).then(function (result) {
-                    Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão Atualizada com sucesso!');
-                })
+                    Canonico.addAlert(vm.alerts, 'SUCCESS', CommonConstants.MESSAGES.MSG_SUCESSO_QUESTAO_EDIT);
+                });
             }
         }
 
         function trash(id) {
             QuestoesDataService.trash(id)
                 .then(function (result) {
-                    Canonico.addAlert(vm.alerts, 'SUCCESS', 'Questão deletada com sucesso!');
+                    Canonico.addAlert(vm.alerts, 'SUCCESS', CommonConstants.MESSAGES.MSG_SUCESSO_QUESTAO_DELETE);
                     activate();
                 })
         }
@@ -165,15 +166,17 @@
                 vm.provas = angular.copy(result.data);
             });
         }
-        function _validateAnswers(){
+
+        function _validateAnswers() {
             var retorno = false;
-            angular.forEach(vm.questao.respostas, function(value){
-                if(value.enunciado === ""){
+            angular.forEach(vm.questao.respostas, function (value) {
+                if (value.enunciado === "") {
                     retorno = true;
                 }
             });
             return retorno;
         }
+
         activate();
 
     }

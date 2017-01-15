@@ -43,6 +43,10 @@ var CommonConstants = {
         'MSG_SUCESSO_ASSUNTO_EDIT' : 'Assunto Editado com Sucesso!',
         'MSG_SUCESSO_ASSUNTO_DELETE' : 'Assunto deletado com sucesso!',
 
+        'MSG_SUCESSO_QUESTAO_ADD' : 'Questão cadastrada com sucesso!',
+        'MSG_SUCESSO_QUESTAO_EDIT' : 'Questão Editada com Sucesso!',
+        'MSG_SUCESSO_QUESTAO_DELETE' : 'Questão deletada com sucesso!',
+
         'MSG_FAIL' : 'Não foi possível executar esta ação. Por favor, tente novamente!'
     }
 };

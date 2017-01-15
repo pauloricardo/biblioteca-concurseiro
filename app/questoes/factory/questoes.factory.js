@@ -42,7 +42,9 @@ function QuestoesFactory(CommonConstants) {
             converted.concurso = item.concurso;
             converted.disciplina = item.disciplina;
             converted.prova = item.prova;
+            converted.prova_id = item.prova_id;
             converted.assunto = item.assunto;
+            converted.assunto_id = item.assunto_id;
             converted.cargo = item.cargo;
             converted.texto = item.texto;
             converted.texto_auxiliar = item.texto_auxiliar;
