@@ -36,11 +36,13 @@ function QuestoesDataService($http, $q, CommonConfig, AuthService) {
     }
 
     function buscaQuestaoPorID(id) {
-        return $http({
-            method: 'GET',
+        if(id){
+            return $http({
+                method: 'GET',
                 url: CommonConfig.getBaseUrl() + '/questoes/'+ id,
-            headers: _headers
-        });
+                headers: _headers
+            });
+        }
     }
 
     function create(orgao) {
