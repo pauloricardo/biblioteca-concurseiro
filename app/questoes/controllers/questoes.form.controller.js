@@ -15,10 +15,10 @@
 
     QuestoesFormController.$inject = ['$scope', '$state', '$stateParams', 'QuestoesDataService', 'ConcursosDataService'
         , 'DisciplinasDataService', 'CargosDataService', '$http', 'FileUploader', 'QuestoesFactory', 'CommonConstants', 'Canonico',
-        'AssuntosDataService', 'ProvasDataService', 'QuestoesRespostaFactory', 'CommonConfig'];
+        'AssuntosDataService', 'ProvasDataService', 'CommonConfig'];
 
     function QuestoesFormController($scope, $state, $stateParams, QuestoesDataService, ConcursosDataService, DisciplinasDataService, CargosDataService,
-                                    $http, FileUploader, QuestoesFactory, CommonConstants, Canonico, AssuntosDataService, ProvasDataService, QuestoesRespostaFactory, CommonConfig) {
+                                    $http, FileUploader, QuestoesFactory, CommonConstants, Canonico, AssuntosDataService, ProvasDataService, CommonConfig) {
         var vm = this;
 
         vm.alerts = [];
@@ -65,7 +65,7 @@
         function uploadImage(file) {
             var fd = new FormData();
             fd.append('file', vm.imageFile);
-            return $http.post("http://biblioteca-concurseiro:8000/api/v1/questoes/uploadQuestaoFile", fd, {
+            return $http.post(CommonConfig.getBaseUrl() + "questoes/uploadQuestaoFile", fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             });
